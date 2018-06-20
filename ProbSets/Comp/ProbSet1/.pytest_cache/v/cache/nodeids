@@ -1,0 +1,5 @@
+[
+  "test_month_length.py::test_month_length",
+  "test_operate.py::test_operate",
+  "test_smallest_factor.py::test_smallest_factor"
+]

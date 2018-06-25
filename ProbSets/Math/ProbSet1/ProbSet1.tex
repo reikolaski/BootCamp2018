@@ -1,0 +1,195 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+%\numberwithin{equation}{section}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+\usepackage{mathrsfs}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#1}} \\
+  Reiko Laski
+\end{flushleft}
+
+\vspace{3mm}
+
+\textbf{Exercise 1.3} \\
+$\mathcal{G}_1 = \{A: A \subset \mathbb{R}, A \text{ open}\} $ is not an algebra. \\
+\textit{Proof:} \\
+Let $B \in \mathcal{G}_1$. Then $B$ is open, and its complement $B^c$ is closed. Therefore, $B^c \not\in \mathcal{G}_1$, so $\mathcal{G}_1$ is not closed under complements and is not an algebra. \qed \\
+
+$\mathcal{G}_2 = \{A: A \text{ is a finite union of intervals of the form } (a,b], (-\infty, b], \text{ and } (a, \infty) \}$ is an algebra, but not a $\sigma$-algebra.
+
+\textit{Proof:}
+\begin{enumerate}
+\item $\emptyset \in \mathcal{G}_2$
+\item Let $B \subset \mathcal{G}_2$. Then its complement $B^c$ is also of the form $(a,b], (-\infty, b], \text{ and } (a, \infty)$. Therefore, $B^c \in \mathcal{G}_2$, so $\mathcal{G}_2$ is closed under complements.
+\item Let $E_1, E_2,...,E_n \in \mathcal{G}_2$. Then their finite union $\cup_{i=1}^n E_i \in \mathcal{G}_2$, so $\mathcal{G}_2$ is closed under finite unions.
+\item Let $E_1, E_2,... \in \mathcal{G}_2$. Then their countable union $\cup_{i=1}^\infty E_i \not\in \mathcal{G}_2$, so $\mathcal{G}_2$ is not closed under countable unions.
+
+Therefore $\mathcal{G}_2$ is an algebra, but not a $\sigma$-algebra. \qed
+\end{enumerate}
+
+$\mathcal{G}_3 = \{A: A \text{ is a countable union of } (a,b], (-\infty, b], \text{ and } (a, \infty) \}$ is a $\sigma$-algebra. \\
+\textit{Proof:}
+\begin{enumerate}
+
+\item $\emptyset \in \mathcal{G}_3$
+\item Let $B \subset \mathcal{G}_3$. Then its complement $B^c$ is also of the form $(a,b], (-\infty, b], \text{ and } (a, \infty)$. Therefore, $B^c \in \mathcal{G}_3$, so $\mathcal{G}_3$ is closed under complements.
+\item Let $E_1, E_2,...,E_n \in \mathcal{G}_3$. Then their finite union $\cup_{i=1}^n E_i \in \mathcal{G}_3$, so $\mathcal{G}_3$ is closed under finite unions.
+\item Let $E_1, E_2,... \in \mathcal{G}_3$. Then their countable union $\cup_{i=1}^\infty E_i \in \mathcal{G}_3$, so $\mathcal{G}_3$ is closed under countable unions.
+
+Therefore $\mathcal{G}_2$ is a $\sigma$-algebra. \qed
+\end{enumerate}
+
+\textbf{Exercise 1.7}
+
+$\{\emptyset, X\}$ is the smallest $\sigma$-algebra.
+
+\textit{Proof:}
+
+Let $\mathcal{A}$ be a $\sigma$-algebra. By definition, $\emptyset \in \mathcal{A}$. Then $\emptyset^c = X \in \mathcal{A}$. \qed\\
+
+$\mathcal{P}(X)$ is the largest $\sigma$-algebra.
+
+\textit{Proof:}
+
+Suppose $\mathcal{P}(X)$ is the not largest $\sigma$-algebra. Then there exists a set $B \subset X$ such that $B \not\in \mathcal{P}(X)$. This is a contradiction. Therefore $\mathcal{P}(X)$ is the largest $\sigma$-algebra. \qed \\
+
+\textbf{Exercise 1.10} \\
+Let $\{\mathcal{S}_\alpha\}$ be a family of $\sigma$-algebras on $X$. Then $\cap_\alpha \mathcal{S_\alpha}$ is also a $\sigma$-algebra.
+
+\textit{Proof:}
+
+\begin{enumerate}
+\item $\emptyset \in \mathcal{S}_\alpha \forall \alpha \implies \emptyset \in \cap_\alpha \mathcal{S}_\alpha$ (contains $\emptyset$)
+\item $S \in \cap_\alpha \mathcal{S}_\alpha \implies S \in \mathcal{S}_\alpha \forall \alpha \implies S^c \in \mathcal{S}_\alpha \forall \alpha \implies S^c \in \cap_\alpha \mathcal{S}_\alpha$ (closed under complements)
+\item $S_1, S_2,... \in \cap_\alpha \mathcal{S}_\alpha \implies S_1, S_2,... \in \mathcal{S}_\alpha \forall \alpha \implies \cup_{i=1}^\infty S_i \in \mathcal{S}_\alpha \forall \mathcal{S}_\alpha \implies \cup_{i=1}^\infty S_i \in \cup_{i=1}^\infty \mathcal{S}_\alpha$ (closed under finite and countable unions) \qed
+\end{enumerate}
+
+\textbf{Exercise 1.17} \\
+Let $(X, \mathcal{S}, \mu)$ be a measure space. Then $\mu$ is monotone and countably subadditive.\\
+\textit{Proof:}
+\begin{enumerate}
+\item Let $A, B \in \mathcal{S}$, and let $A \subset B$. Then $A \cup (B \cap A^c) = B$. These sets are disjoint, so $\mu(A) + \mu(B \cap A^c) = \mu(B) \implies \mu(A) \leq \mu(B)$.
+\item Let $\{A_i\}_{i=1}^\infty \subset \mathcal{A}$. Then $\cup_{i=1}^\infty A_i = A_1 \cup (A_2 \cap A_1^c) \cup (A_3 \cap A_1^c \cap A_2^c) \cup \cdots$. Since these sets are disjoint, $\mu(\cup_{i=1}^\infty A_i) = \mu(A_1) + \mu(A_2 \cap A_1^c) + \mu(A_3 \cap A_1^c \cap A_2^c) + \cdots\\
+\leq \sum_{i=1}^\infty \mu(A_i)$ \qed
+\end{enumerate}
+
+\textbf{Exercise 1.18} \\
+Let $(X, \mathcal{S}, \mu)$ be a measure space. Let $B \in \mathcal{S}$. Show that $\lambda:\mathcal{S}\rightarrow[0,\infty]$ defined by $\lambda(A) = \mu(A \cap B)$ is also a measure $(X, \mathcal{S})$.\\
+\textit{Proof:}
+\begin{enumerate}
+\item $\lambda(\emptyset) = \mu(\emptyset \cap B) = \mu(\emptyset) = 0$
+\item Let $\{A_i\}_{i=1}^\infty \in \mathcal{S}$ s.t. $A_i \cap A_j = \emptyset, \forall i \neq j$.\\
+$\lambda(\cup_{i=1}^\infty A_i) = \mu((\cup_{i=1}^\infty A_i) \cap B) = \mu((A_1 \cap B) \cup (A_2 \cap B) \cup \cdots) = \mu(A_1 \cap B) + \mu(A_2 \cap B) + \cdots = \sum_{i=1}^\infty \mu(A_i \cap B) = \sum_{i=1}^\infty \lambda(A_i)$ \qed
+\end{enumerate}
+
+\textbf{Exercise 1.20}\\
+Let $\mu$ be a measure on $(X, \mathcal{S})$. Then it is continuous from below in the sense that:
+$(A_1 \supset A_2 \supset A_2 \supset \cdots, A_i \in \mathcal{S}, \mu(A_1) < \infty) \implies (\lim_{n \to \infty} \mu(A_n) = \mu(\cap_{i=1}^\infty A_i))$\\
+\textit{Proof:}
+
+Let $B_n = A_n$. Note that $\cap_{i=1}^n A_i = B_n$. \\
+$\mu(\cap_{i=1}^\infty A_i) = \lim_{n \to \infty} \mu(\cap_{i=1}^n A_i) = \lim_{n \to \infty} \mu(B_n) = \lim_{n \to \infty} \mu(A_n)$ \qed \\
+
+\textbf{Exercise 2.10} \\
+The theorem states that
+$\mu^*(B) \geq \mu^*(B \cap E) + \mu^*(B \cap E^c)$.
+The (*) in the theorem could be replaced by $\mu^*(B) = \mu^*(B \cap E) + \mu^*(B \cap E^c)$, because we have that $\mu^*(B) \leq \mu^*(B \cap E) + \mu^*(B \cap E^c)$ by the definition of the outer measure $\mu^*$. \qed \\
+
+\textbf{Exercise 2.14}
+Let $\mathcal{O}$ denote the collection of open sets of $\mathbb{R}$. Then $\sigma(\mathcal{O}) = \mathcal{B}(\mathbb{R})$ is the smallest $\sigma$-algebra containing all open sets of $\mathbb{R}$. $\sigma(\mathcal{A})$ is the $\sigma$-algebra generated by the family $\mathcal{A}$ that include $\mathcal{O}$. Therefore, $\sigma(\mathcal{O}) \subset \sigma(\mathcal{A}) \subset \mathcal{M}$. \qed \\
+
+\textbf{Exercise 3.1} \\
+Let $a \in \mathbb{R}$. Then $\{a\} \subset [a - \epsilon, a + \epsilon] \ \forall \epsilon > 0$. Then $\bar{\mu}(a) \leq \bar{\mu} ([a - \epsilon, a + \epsilon]) = 2 \epsilon \implies \bar{\mu}(a) = 0 \ \forall a \in \mathbb{R}$. Let $A = \{a: a \in \mathbb{R}\} = \cup_{n=1}^\infty \{a_n\}$. Then $\bar{\mu}(A) = \bar{\mu}(\cup_{n=1}^\infty \{a_n\}) = \sum_{n=1}^\infty \bar{\mu}(a_n) = 0$. Therefore every countable subset of the real line has Lebesgue measure 0. \qed \\
+
+\textbf{Exercise 3.4} \\
+Let $\{x \in X: f(x) < a\}$ be measurable in $\mathcal{M}$. \\
+The set $\cap_{n=0}^\infty \{x \in X: f(x) < a + \frac{1}{n}\} = \{x \in X: f(x) \leq a\}$ is measurable since $\mathcal{M}$ is closed under countable intersection. \\
+The sets $\{x \in X: f(x) < a\}^c = \{x \in X: f(x) \geq a\}$ and $\{x \in X: f(x) \leq a\}^c = \{x \in X: f(x) > a\}$ are also measurable since $\mathcal{M}$ closed under complements. \qed \\
+
+\textbf{Exercise 3.7} \\
+The measurability of $f + g$, $f \cdot g$, and $|f|$ follow from the measurability of $F(f(x), g(x))$. The measurability of $\max(f,g)$ and $\min(f,g)$ follow from the fact that $\sup_{n \in \mathbb{N}} f_n(x)$ and $\inf_{n \in \mathbb{N}} f_n(x)$ are measurable. \qed \\
+
+\textbf{Exercise 3.14} \\
+Let $\epsilon > 0$. Since $f$ is bounded, $\exists M \in \mathbb{N}$ s.t. $f < M$. Then $\frac{1}{2^N} < \epsilon$ and for all $n \geq N, |f(x) - s_n(x) < \epsilon \ \forall x$. Therefore the convergence in (1) is uniform. \qed \\
+
+\textbf{Exercise 4.13} \\
+By Property 4.5, since $||f|| < M$ on $E \in \mathcal{M}$ and $\mu(E) < \infty$, we know that $0 \leq \int_E ||f|| d\mu < M\mu(E) < \infty$. Then $\int_E ||f||^+ d\mu$ and $\int_E ||f||^- d\mu$ are finite, so $||f||$ is absolutely integrable with respect to $\mu$. \qed \\
+
+\textbf{Exercise 4.14} \\
+Since $f \in \mathscr{L}^1(\mu, E)$, we know that both $\int_E f^+ d\mu$ and $\int_E f^- d\mu$ are finite. Therefore, $f$ must be finite almost everywhere on E. \qed \\
+
+\textbf{Exercise 4.15} \\
+Since $f, g \in \mathscr{L}^1(\mu, E)$ and $f \leq g$, we have that $\int_E f^- d\mu \leq \int_E g^- d\mu$ and $\int_E f^+ d\mu \leq \int_E g^+ d\mu \implies \int_E f d\mu \leq \int_E g d\mu$. \qed \\
+
+\textbf{Exercise 4.16} \\
+Since $f \in \mathscr{L}^1(\mu, E)$, we have that $\int_E f^- d\mu$ and $\int_E f^+ d\mu$ are finite. Since $A \subset E$, $E = A \cup (A^c \cap E) \ \implies \ \int_{A \cup (A^c \cap E)} f^- d\mu$ and $\int_{A \cup (A^c \cap E)} f^+ d\mu$ are finite $ \implies \ \int_A f^- d\mu \ + \ \int_{A^c \cap E} $ and $\int_A f^+ d\mu \ + \ \int_{A^c \cap E}f^+ d\mu$
+Since $f \in \mathscr{L}^1(\mu, E)$, we have that $\int_E f^- d\mu$ and $\int_E f^+ d\mu$ are finite. Since $A \subset E$, $E = A \cup (A^c \cap E) \ \implies \ \int_{A \cup (A^c \cap E)} f^- d\mu$ and $\int_{A \cup (A^c \cap E)} f^+ d\mu$ are finite $ \implies \ \int_A f^- d\mu \ + \ \int_{A^c \cap E} f^- d\mu$ and $\int_A f^+ d\mu \ + \ \int_{A^c \cap E}f^+ d\mu$ are finite. Therefore we know that $\int_A f^- d\mu$ and $\int_A f^+ d\mu$ are finite, and thus $f \in \mathscr{L}^1(\mu, A)$. \qed \\
+
+\textbf{Exercise 4.21} \\
+Since $f \in \mathscr{L}^1$, we can define measures $\lambda_1(A) := \int_A f^+ d\mu$ and $\lambda_2(A) := \int_A f^- d\mu$ $\implies \lambda(A) = \lambda_1(A) - \lambda_2(A) = \int_A f d\mu$. Then since $\beta \subset A$, $A = B \cup (A - B) \ \implies \ \lambda_i(A) = \lambda_i(B) + \lambda_i(A - B)$. By hypothesis, $\lambda_i(A - B) = 0 \ \implies \ \int_A f d\mu = \lambda(A) = \lambda_1(A) - \lambda_2(A) = \lambda_1(B) - \lambda_2(B) = \lambda(B) = \int_B f d\mu$. \qed
+
+\end{document}

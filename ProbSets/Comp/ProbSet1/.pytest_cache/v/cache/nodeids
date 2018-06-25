@@ -1,0 +1,15 @@
+[
+  "test_fraction.py::test_fraction_init",
+  "test_fraction.py::test_fraction_str",
+  "test_fraction.py::test_fraction_float",
+  "test_fraction.py::test_fraction_eq",
+  "test_fraction.py::test_fraction_add",
+  "test_fraction.py::test_fraction_sub",
+  "test_fraction.py::test_fraction_mul",
+  "test_fraction.py::test_fraction_truediv",
+  "test_month_length.py::test_month_length",
+  "test_operate.py::test_operate",
+  "test_set.py::test_count_cards",
+  "test_set.py::test_is_set",
+  "test_smallest_factor.py::test_smallest_factor"
+]

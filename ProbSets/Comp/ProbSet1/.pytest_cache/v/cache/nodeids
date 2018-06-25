@@ -1,4 +1,5 @@
 [
+<<<<<<< HEAD
   "test_fraction.py::test_fraction_init",
   "test_fraction.py::test_fraction_str",
   "test_fraction.py::test_fraction_float",
@@ -11,5 +12,9 @@
   "test_operate.py::test_operate",
   "test_set.py::test_count_cards",
   "test_set.py::test_is_set",
+=======
+  "test_month_length.py::test_month_length",
+  "test_operate.py::test_operate",
+>>>>>>> 3e81012ab754861db0fb7d588b4f9b4c23c4c209
   "test_smallest_factor.py::test_smallest_factor"
 ]

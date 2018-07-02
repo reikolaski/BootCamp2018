@@ -1,0 +1,427 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{amsmath}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#2}} \\
+  Reiko Laski
+\end{flushleft}
+
+\textbf{Exercise 1} \\
+(i) \textit{Proof:}
+\begin{align*}
+  \langle \vec{x}, \vec{y} \rangle &= \frac{1}{4}(||\vec{x} + \vec{y}||^2 - ||\vec{x} - \vec{y}||^2) \\
+  &= \frac{1}{4} (\langle \vec{x} + \vec{y}, \vec{x} + \vec{y}\rangle - \langle \vec{x} - \vec{y}, \vec{x} - \vec{y}\rangle) \\
+  &= \frac{1}{4} (\langle \vec{x}, \vec{x} + \vec{y}\rangle + \langle \vec{y}, \vec{x} + \vec{y}\rangle - \langle \vec{x}, \vec{x} - \vec{y}\rangle + \langle \vec{y}, \vec{x} - \vec{y}\rangle) \\
+  &= \frac{1}{4} (\langle \vec{x}, \vec{x}\rangle + \langle \vec{x}, \vec{y}\rangle + \langle \vec{y}, \vec{x}\rangle + \langle \vec{y}, \vec{y}\rangle - \langle \vec{x}, \vec{x}\rangle + \langle \vec{x}, \vec{y}\rangle + \langle \vec{y}, \vec{x}\rangle - \langle \vec{y}, \vec{y}\rangle) \\
+  &= \frac{1}{4} (\langle \vec{x}, \vec{y}\rangle + \langle \vec{y}, \vec{x}\rangle + \langle \vec{x}, \vec{y}\rangle + \langle \vec{y}, \vec{x}\rangle) \\
+  &= \frac{1}{4} (2\langle \vec{x}, \vec{y} \rangle + 2\langle \vec{y}, \vec{x} \rangle) \\
+  &= \frac{1}{4} (4\langle \vec{x}, \vec{y} \rangle) \\
+  &= 4\langle \vec{x}, \vec{y} \rangle
+\end{align*}
+
+(ii) \textit{Proof:}
+\begin{align*}
+  ||\vec{x}||^2 + ||\vec{y}||^2 &= \frac{1}{2}(||\vec{x} + \vec{y}||^2 + ||\vec{x} - \vec{y}||^2) \\
+  &= \frac{1}{2} (\langle \vec{x} + \vec{y}, \vec{x} + \vec{y} \rangle + \langle \vec{x} - \vec{y}, \vec{x} - \vec{y} \rangle) \\
+  &= \frac{1}{2} (\langle \vec{x}, \vec{x} + \vec{y} \rangle + \langle \vec{y}, \vec{x} + \vec{y} \rangle + \langle \vec{x} - \vec{y}, \vec{x} \rangle - \langle \vec{x} - \vec{y}, \vec{y} \rangle) \\
+  &= \frac{1}{2} (\langle \vec{x}, \vec{x} \rangle + \langle \vec{x}, \vec{y} \rangle + \langle \vec{y}, \vec{x} \rangle + \langle \vec{y}, \vec{y} \rangle + \langle \vec{x}, \vec{x} \rangle - \langle \vec{y}, \vec{x} \rangle - \langle \vec{x}, \vec{y} \rangle + \langle \vec{y}, \vec{y} \rangle) \\
+  &= \frac{1}{2} (2\langle \vec{x}, \vec{x} \rangle + 2 \langle \vec{y}, \vec{y} \rangle) \\
+  &= \langle \vec{x}, \vec{x} \rangle + 2 \langle \vec{y}, \vec{y} \rangle \\
+  &= ||\vec{x}||^2 + ||\vec{y}||^2
+\end{align*}
+
+\pagebreak
+
+\textbf{Exercise 2} \\
+\textit{Proof:}
+\begin{align*}
+  \langle \vec{x}, \vec{y} \rangle &= \frac{1}{4}(||\vec{x} + \vec{y}||^2 - ||\vec{x} - \vec{y}||^2 + i||\vec{x} - i\vec{y}||^2 - i||\vec{x} + i\vec{y}||^2) \\
+  &= \frac{1}{4}(||\vec{x} + \vec{y}||^2 - ||\vec{x} - \vec{y}||^2) + \frac{1}{4} (i||\vec{x} - i\vec{y}||^2 - i||\vec{x} + i\vec{y}||^2) \\
+  &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4} (i||\vec{x} - i\vec{y}||^2 - i||\vec{x} + i\vec{y}||^2) \\
+  &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4} (i \langle \vec{x} - i\vec{y}, \vec{x} - i\vec{y} \rangle - i \langle \vec{x} + i\vec{y}, \vec{x} + i\vec{y} \rangle) \\
+  &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4}
+  (i \langle \vec{x}, \vec{x} - i\vec{y} \rangle +  i^2 \langle \vec{y}, \vec{x} - i\vec{y} \rangle - i \langle \vec{x}, \vec{x} + i\vec{y} \rangle + (-i)^2 \langle \vec{y}, \vec{x} + i\vec{y} \rangle) \\
+\begin{split}
+    &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4}
+    (i \langle \vec{x}, \vec{x} \rangle + i^2 \langle \vec{x}, \vec{y} \rangle + i^2 \langle \vec{y}, \vec{x} \rangle + i^3 \langle \vec{y}, \vec{y} \rangle \\
+    &\qquad - i \langle \vec{x}, \vec{x} \rangle + (-i)^2 \langle \vec{x}, \vec{y} \rangle + (-i)^2 \langle \vec{y}, \vec{x} \rangle + (-i^3) \langle \vec{y}, \vec{y} \rangle)\ \\
+\end{split}\\
+  &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4}
+  (i^2 \langle \vec{x}, \vec{y} \rangle + i^2 \langle \vec{y}, \vec{x} \rangle + (-i)^2 \langle \vec{x}, \vec{y} \rangle + (-i)^2 \langle \vec{y}, \vec{x} \rangle) \\
+  &= \langle \vec{x}, \vec{y} \rangle + \frac{1}{4}
+  (-\langle \vec{x}, \vec{y} \rangle - \langle \vec{y}, \vec{x} \rangle + \langle \vec{x}, \vec{y} \rangle + \langle \vec{y}, \vec{x} \rangle) \\
+  &= \langle \vec{x}, \vec{y} \rangle
+\end{align*}
+
+\textbf{Exercise 3} \\
+(i) $\cos \ \theta = \frac{\langle x, x^5 \rangle}{||x|| \cdot ||x^5||}$ \\
+$\langle x, x^5 \rangle = \int_0^1 x \cdot x^5 \ dx = \frac{1}{7}$ \\
+$\langle x, x \rangle = \int_0^1 x \cdot x \ dx = \frac{1}{3} \implies ||x|| = \frac{1}{\sqrt{3}}$ \\
+$\langle x^5, x^5 \rangle = \int_0^1 x^5 \cdot x^5 \ dx = \frac{1}{11} \implies ||x^5|| = \frac{1}{\sqrt{11}}$ \\
+$\implies \theta = \cos^{-1} (\frac{\sqrt{33}}{7})$ \\
+
+(ii) $\cos \ \theta = \frac{\langle x^2, x^4 \rangle}{||x^2|| \cdot ||x^4||}$ \\
+$\langle x^2, x^4 \rangle = \int_0^1 x^2 \cdot x^4 \ dx = \frac{1}{7}$ \\
+$\langle x^2, x^2 \rangle = \int_0^1 x^2 \cdot x^2 \ dx = \frac{1}{5} \implies ||x^2|| = \frac{1}{\sqrt{5}}$ \\
+$\langle x^4, x^4 \rangle = \int_0^1 x^4 \cdot x^4 \ dx = \frac{1}{9} \implies ||x^4|| = \frac{1}{3}$ \\
+$\implies \theta = \cos^{-1} (\frac{3\sqrt{5}}{7})$ \\
+
+\textbf{Exercise 8} \\
+(i) $\langle \cos t, \sin t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos t \sin t \ dt = 0$
+\qquad $\langle \cos t, \cos t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos t \cos t \ dt = 1$
+
+$\langle \cos t, \cos 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos t \cos 2t \ dt = 0$
+\qquad $\langle \sin t, \sin t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \sin t \sin t \ dt = 1$
+
+$\langle \cos t, \sin 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos t \sin 2t \ dt = 0$
+\qquad $\langle \cos 2t, \cos 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos 2t \cos 2t \ dt = 1$
+
+$\langle \sin t, \cos 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \sin t \cos 2t \ dt = 0$
+\qquad $\langle \sin 2t, \sin 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \sin 2t \sin 2t \ dt = 1$
+
+$\langle \sin t, \sin 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos t \sin 2t \ dt = 0$
+
+$\langle \cos 2t, \sin 2t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi \cos 2t \sin 2t \ dt = 0$ \\
+
+(ii) $||t|| = \langle t, t \rangle = \frac{1}{\pi} \int_{-\pi}^\pi t^2 \ dt = \frac{2\pi^2}{3}$ \\
+
+(iii)
+\begin{align*}
+  \begin{split}
+    proj_X(\cos 3t) &= \langle \cos t, \cos 3t \rangle \cdot \cos t + \langle \sin t, \cos 3t \rangle \cdot \sin t \\
+    & \qquad \qquad + \langle \cos 2t, \cos 3t \rangle \cdot \cos 2t + \langle \sin 2t, \cos 3t \rangle \cdot \sin 2t
+  \end{split} \\
+  \begin{split}
+    &= \Big(\frac{1}{\pi} \int_{-\pi}^\pi \cos t \cos 3t \ dt \Big) \cdot \cos t +
+    \Big(\frac{1}{\pi} \int_{-\pi}^\pi \sin t \cos 3t \ dt \Big) \cdot \sin t \\
+    & \qquad \qquad + \Big(\frac{1}{\pi} \int_{-\pi}^\pi \cos 2t \cos 3t \ dt \Big) \cdot \cos 2t +
+    \Big(\frac{1}{\pi} \int_{-\pi}^\pi \sin 2t \cos 3t \ dt \Big) \cdot \sin 2t
+  \end{split} \\
+  &= 0
+\end{align*}
+
+(iv)
+\begin{align*}
+  \begin{split}
+    proj_X(t) &= \langle \cos t, t \rangle \cdot \cos t + \langle \sin t, t \rangle \cdot \sin t \\
+    & \qquad \qquad + \langle \cos 2t, t \rangle \cdot \cos 2t + \langle \sin 2t, t \rangle \cdot \sin 2t
+  \end{split} \\
+  \begin{split}
+    &= \Big(\frac{1}{\pi} \int_{-\pi}^\pi (\cos t) \ t \ dt \Big) \cdot \cos t +
+    \Big(\frac{1}{\pi} \int_{-\pi}^\pi (\sin t) \ t \ dt \Big) \cdot \sin t \\
+    & \qquad \qquad + \Big(\frac{1}{\pi} \int_{-\pi}^\pi (\cos 2t) \ t \ dt \Big) \cdot \cos 2t +
+    \Big(\frac{1}{\pi} \int_{-\pi}^\pi (\sin 2t) \ t \ dt \Big) \cdot \sin 2t
+  \end{split} \\
+  &= 2\sin t - \sin(2t)
+\end{align*}
+
+\textbf{Exercise 9} \\
+The rotation matrix $R_\mathcal{\theta}$ is orthonormal since $R_\mathcal{\theta}R_\mathcal{\theta}^H=I$:
+\[
+\begin{bmatrix}
+  \cos \theta & -\sin \theta \\
+  \sin \theta & \cos \theta
+\end{bmatrix}
+\begin{bmatrix}
+  \cos \theta & \sin \theta \\
+  -\sin \theta & \cos \theta
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \cos^2 \theta + \sin^2 \theta & \cos \theta \sin \theta - \sin \theta \cos \theta \\
+  \cos \theta \sin \theta - \sin \theta \cos \theta & \cos^2 \theta + \sin^2 \theta
+\end{bmatrix}
+=
+\begin{bmatrix}
+  1 & 0 \\
+  0 & 1
+\end{bmatrix}
+\]
+
+\textbf{Exercise 10} \\
+(i) $Q \in M_n(\mathbb{F}^n)$ is an orthonormal matrix if and only if $Q^HQ=QQ^H=I$. \\
+\textit{Proof:} \\
+Let $Q$ be an orthonormal matrix. Then we have that $\langle \vec{x}, \vec{y} \rangle = \langle Q\vec{x},  Q\vec{y} \rangle = (Q\vec{x})^HQ\vec{y} = \vec{x}^HQ^HQ\vec{y}$. Since we know that $\langle \vec{x}, \vec{y} \rangle = \vec{x}^H\vec{y}$, it must be that $Q^HQ = I$. Also, $QQ^H = I$ since $Q$ is invertible.\\
+
+Now suppose that for a matrix $Q$, we have that $Q^HQ = QQ^H = I$. Consider the inner product $\langle Q\vec{x},  Q\vec{y} \rangle = (Q\vec{x})^HQ\vec{y} = \vec{x}^HQ^HQ\vec{y} = \vec{x}^H\vec{y} = \langle \vec{x}, \vec{y} \rangle$. Therefore, $Q$ must be an orthonormal matrix. \\
+
+(ii) If $Q \in M_n(\mathbb{F})$ is an orthonormal matrix, then $||Q\vec{x}|| = ||\vec{x}||$ for all $\vec{x} \in \mathbb{F}^n$. \\
+\textit{Proof:} \\
+$||Q\vec{x}|| = \sqrt{\langle Q\vec{x},  Q\vec{y} \rangle} = \sqrt{\langle \vec{x},  \vec{y} \rangle} = ||\vec{x}||$. \\
+
+(iii) If $Q \in M_n(\mathbb{F}^n)$ is an orthonormal matrix, then so is $Q^{-1}$. \\
+\textit{Proof:} \\
+Assume $Q$ is an orthonormal matrix. Then we know that $Q^HQ=QQ^H=I$, so $Q^{-1} = Q^H$. To prove that $Q^H$ is orthonormal, we can show that $(Q^H)^H Q^H = Q^H (Q^H)^H = I$. \\
+
+(iv) The columns of an orthonormal matrix $Q \in M_n(\mathbb{F}^n)$ are orthonormal. \\
+\textit{Proof:} \\
+Assume that $Q$ is orthonormal. Consider standard basis vectors $e_i, e_j \in \mathbb{F}^n$. The $i$th column of $Q$ is $Q \vec{e_i}$. Since $Q$ is orthonormal, we have that $\langle Q \vec{e_i}, Q \vec{e_j} \rangle = \langle e_i, e_j \rangle = \delta_{ij}$. Therefore the columns of $Q$ must be orthonormal. \\
+
+(v) If $Q \in M_n(\mathbb{F}^n)$ is an orthonormal matrix, then $|det(Q)| = 1$.
+\textit{Proof:} \\
+Since $Q$ is orthonormal, we know that $QQ^H = I$. Then $det(QQ^H) = det(I) = 1$. By the properties of determinants, we have that $det(QQ^H) = det(Q) \cdot det(Q^H) = 1$. Using the fact that $Q$ and $Q^H$ have the same determinants, we conclude that $|det(Q)| = 1$.
+
+No. Consider the matrix
+\[
+\begin{bmatrix}
+  1 & 1 \\
+  0 & 1
+\end{bmatrix}
+\] \\
+
+(vi) If $Q_1, Q_2 \in M_n(\mathbb{F}^n)$ are orthonormal matrices, then the product $Q_1Q_2$ is also an orthonormal matrix. \\
+\textit{Proof:} \\
+$(Q_1Q_2)^HQ_1Q_2 = Q_2^H Q_1^H Q_1 Q_2 = I$ \\
+$Q_1Q_2(Q_1Q_2)^H = Q_1 Q_2 Q_2^H Q_1^H = I$. \\
+Therefore $Q_1Q_2$ is an orthonormal matrix. \\
+
+\textbf{Exercise 11} \\
+Let $\{\vec{x}_1, \vec{x}_2, ..., \vec{x}_n\}$ be a linearly dependent set. Assume that the vector $\vec{x}_k$ is linearly dependent on $\{\vec{x}_1, \vec{x}_2, ..., \vec{x}_{k-1}\}$, i.e. $\vec{x}_k \in X = Span(\{\vec{x}_1, \vec{x}_2, ..., \vec{x}_{k-1}\})$. When we apply the Gram-Schmidt orthonormalization process, we have that $\vec{p}_{k-1} = proj_X (\vec{x}_k) = \vec{x}_k \implies \vec{q}_k = \vec{0}$. If we remove all the zero vectors from the set, we have an orthonormal set of linearly dependent vectors. \\
+
+\textbf{Exercise 16} \\
+(i) Let $Q_1R_1$ and $Q_2R_2$ be distinct $QR$ decompositions of a matrix $A$ s.t. $Q_2 = Q_1D$ and $R_2 = D^{-1}R_2$ where $D$ is a diagonal matrix with all its diagonal entries $\pm 1$. Then $Q_2$ is orthonormal since $Q_1$ is orthonormal. Also, $R_2$ is upper triangular since $R_1$ is upper triangular. \\
+
+(ii) Assume that $A = Q_1R_1 = Q_2R_2$ s.t. $Q_i$ is orthonormal and $R_i$ is upper triangular with only positive diagonal entries. Thus $R_i$ is invertible and $Q_iQ_i^H=I$. Then we have that $R_1R_2^{-1} = Q_1^HQ_2$. Since the $R_i$ are upper triangular with only positive entries on the diagonal, $R_1R_2^{-1}$ must be upper triangular with only positive entries on the diagonal as well. Also, since the $Q_i$ are orthonormal, $Q_1^HQ_2$ must be orthonormal. Then, $R_1R_2^{-1} = Q_1^HQ_2 = I$, so $R_1=R_2$ and $Q_1=Q_2$. \\
+
+\textbf{Exercise 17} \\
+Let $A = \hat{Q}\hat{R}$. \\
+$A^HA\vec{x} = A^H\vec{b}$ \\
+$\implies (\hat{Q}\hat{R})^H\hat{Q}\hat{R}\vec{x}= (\hat{Q}\hat{R})^H\vec{b}$ \\
+$\implies \hat{R}^H\hat{Q}^H\hat{Q}\hat{R}\vec{x}= \hat{R}^H\hat{Q}^H\vec{b}$ \\
+$\implies \hat{Q}\hat{R}\vec{x}= \vec{b}$ \\
+$\implies \hat{R}\vec{x}= \hat{Q}^H\vec{b}$ \\
+
+\textbf{Exercise 23} \\
+By the triangle inequality, \\
+\begin{equation*}
+  ||\vec{x}|| = ||(\vec{x} - \vec{y}) + \vec{y}|| \leq ||\vec{x} - \vec{y}|| + ||\vec{y}||
+  \Leftrightarrow ||\vec{x}|| - ||\vec{y}|| \leq ||\vec{x} - \vec{y}||.
+\end{equation*}
+Similarly and by scale preservation, \\
+\begin{equation*}
+  ||\vec{y}|| = |-1| \cdot ||\vec{y}|| = ||-\vec{y}|| = ||(\vec{x} - \vec{y}) + \vec{x}|| \leq ||\vec{x} - \vec{y}|| + ||\vec{y}||
+  \Leftrightarrow ||\vec{y}|| - ||\vec{x}|| \leq ||\vec{x} - \vec{y}||
+\end{equation*}
+\begin{equation*}
+  \implies |||\vec{x}|| - ||\vec{y}||| \leq ||\vec{x} - \vec{y}||
+\end{equation*}
+
+\textbf{Exercise 24} \\
+(i) $||f||_{L^1} = \int_a^b |f(t)| dt$ \\
+1. Positivity: $|f(t)| \geq 0$ for all $x \implies \int_a^b |f(t)|dt \geq 0$. \\
+Also, $\int_a^b |f(t)|dt = 0$ if and only if $|f(t)| = 0$. \\
+
+2. Scale preservation: $||af||_{L^1} = \int_a^b |af(t)| dt = |a| \int_a^b |f(t)| dt = |a| ||f||_{L^1}$ \\
+
+3. Triangle inequality: Consider $f, g \in C[a, b]$.
+\begin{align*}
+  || f + g ||_{L^1} &= \int_a^b |f(t) + g(t)| dt \\
+  &\leq \int_a^b (|f(t)| + |g(t)|) dt \\
+  &= \int_a^b |f(t)|dt + \int_a^b |g(t)|dt \\
+  &= ||f||_{L^1} + ||g||_{L^1}
+\end{align*}
+
+(ii) $||f||_{L^2} = (\int_a^b |f(t)|^2 dt)^{\frac{1}{2}}$ \\
+1. Positivity: $|f(t)|^2 \geq 0$ for all $x \implies (\int_a^b |f(t)|^2dt)^\frac{1}{2} \geq 0$. \\
+Also, $(\int_a^b |f(t)|^2 dt)^\frac{1}{2} = 0$ if and only if $|f(t)| = 0$. \\
+
+2. Scale preservation: $||af||_{L^2} = (\int_a^b |af(t)|^2 dt)^\frac{1}{2} = |a| (\int_a^b |f(t)|^2 dt)^\frac{1}{2} = |a| ||f||_{L^2}$ \\
+
+3. Triangle inequality: Consider $f, g \in C[a, b]$.
+\begin{align*}
+  || f + g || &= \Big(\int_a^b |f(t) + g(t)|^2 dt\Big)^\frac{1}{2} \\
+  &\leq \Big(\int_a^b |f(t)|^2dt + \int_a^b |g(t)|^2dt\Big)^\frac{1}{2} \\
+  &\leq ||f||_{L^2} + ||g||_{L^2}
+\end{align*}
+
+(iii) $||f||_{L^\infty} = \sup_{x \in [a,b] |f(x)|}$ \\
+1. Positivity: $|f(x)| \geq 0$ for all $x \implies \sup_{x \in [a, b]} |f(x)| \geq 0$. \\
+Also, $\sup_{x \in [a, b]} |f(x)| = 0$ if and only if $|f(x)| = 0$. \\
+
+2. Scale preservation: $||af||_{L^\infty} = \sup_{x \in [a, b]} |a||f(x)| = |a| \sup_{x \in [a, b]} |f(x)| = |a|||f||_{L^\infty}$ \\
+
+3. Triangle inequality:
+  For any $x \in [a, b]$
+  \begin{align*}
+    |f(x) + g(x)| &\leq |f(x)| + |g(x)| \\
+    &\leq \sup_{x \in [a, b]} |f(x)| + \sup_{x \in [a, b]} |g(x)| \\
+    &= ||f||_{L^\infty} + ||g||_{L^\infty} \\
+    &\implies \sup_{x \in [a, b]} |f(x) + g(x)| = ||f + g ||_{L^\infty} \leq ||f||_{L^\infty} + ||g||_{L^\infty}
+  \end{align*}
+
+\textbf{Exercise 26} \\
+Prove that topological equivalence is an equivalence relation. We check that it satisfies the three conditions: \\
+
+1. Reflexivity: $||\cdot||_a \sim ||\cdot||_a$ \\
+We see that $m||\vec{x}||_a \leq ||\vec{x}||_a \leq M||\vec{x}||_a$ holds for a choice of constants $m=1$ and $M=2$. \\
+
+2. Symmetry: $||\cdot||_a \sim ||\cdot||_b \implies ||\cdot||_b \sim ||\cdot||_a$ \\
+If $m||\vec{x}||_a \leq ||\vec{x}||_b \leq M||\vec{x}||_a$, then the relation holds for $\frac{1}{M}||\vec{x}||_b \leq ||\vec{x}||_a \leq \frac{1}{m}||\vec{x}||_b$. \\
+
+3. Transitivity: $||\cdot||_a \sim ||\cdot||_b \text{ and } ||\cdot||_b \sim ||\cdot||_c \implies ||\cdot||_a \sim ||\cdot||_c$ \\
+If $m_1||\vec{x}||_a \leq ||\vec{x}||_b \leq M_1||\vec{x}||_a$ and $m_2||\vec{x}||_b \leq ||\vec{x}||_c \leq M_2||\vec{x}||_b$, then the relation holds for $m_1m_2||\vec{x}||_a \leq ||\vec{x}||_c \leq M_1M_2||\vec{x}||_a$. \\
+
+(i) Show that $||\vec{x}||_2 \leq ||\vec{x}||_1 \leq \sqrt{n} ||\vec{x}||_2$. \\
+\begin{equation*}
+  ||\vec{x}||_2 \leq ||\vec{x}||_1 \leq \sqrt{n} ||\vec{x}||_2
+\end{equation*}
+
+\begin{equation*}
+  \Big (\sum_{j=1}^n |x_j|^2 \Big) ^{\frac{1}{2}} \leq \sum_{j=1}^n |x_j| \leq \sqrt{n} \Big (\sum_{j=1}^n |x_j|^2 \Big) ^{\frac{1}{2}}
+\end{equation*}
+
+(ii) Show that $||\vec{x}||_\infty \leq ||\vec{x}||_2 \leq \sqrt{n} ||\vec{x}||_\infty$. \\
+
+\textbf{Exercise 28} \\
+
+\textbf{Exercise 29} \\
+
+\textbf{Exercise 30} \\
+
+\textbf{Exercise 37} \\
+We define $\mathcal{S} = {1, x, x^2}$ to be the basis of the space V. Then we can evaluate $L$ on the basis vectors: $L[1] = 0, L[x] = 1, L[x^2] = 2$. Every function $p \in V$ can be written as a linear combination of the basis vectors:
+\begin{equation*}
+  p = a_1 + a_2 x + a_3 x^2 \implies L[p] = a_1 L[1] + a_2 L[x] + a_3 L[x^2]
+\end{equation*}
+
+\[
+L[p] =
+\begin{bmatrix}
+  L[1] & L[x] & L[x^2]
+\end{bmatrix}
+\begin{bmatrix}
+  a_1 \\
+  a_2 \\
+  a_3
+\end{bmatrix}
+= \langle (0, 1, 2), x \rangle
+\] \\
+
+\textbf{Exercise 38} \\
+We again define $\mathcal{S} = {1, x, x^2}$ to be the basis of the space V, and we evaluate $D$ on the basis vectors: $D[1](x) = 0, D[x](x) = 1, D[x^2](x) = 2x$. The matrix representation of $D$ with respect to this basis is
+\[
+D =
+\begin{bmatrix}
+  0 & 1 & 0 \\
+  0 & 0 & 2 \\
+  0 & 0 & 0
+\end{bmatrix}
+\]
+Using intergration by parts,
+\begin{equation*}
+  \langle q, D[p] \rangle = \int_{-\infty}^{\infty} q(x) p'(x) dx = - \int_{-\infty}^\infty q'(x) p(x) dx = -\langle D[q], [p] \rangle.
+\end{equation*}
+Therefore the matrix representation of the adjoint of D with respect to the basis is
+\[
+D^* = -D =
+\begin{bmatrix}
+  0 & -1 & 0 \\
+  0 & 0 & -2 \\
+  0 & 0 & 0
+\end{bmatrix}
+\]
+
+\textbf{Exercise 39} \\
+
+\textbf{Exercise 40} \\
+
+\textbf{Exercise 44} \\
+
+\textbf{Exercise 45} \\
+
+\textbf{Exercise 46} \\
+
+\textbf{Exercise 47} \\
+Let $P = A(A^H A)^{-1}A^H$ \\
+(i) $P^2 = P$ \\
+\textit{Proof:}
+\begin{align*}
+  P^2 &= A(A^H A)^{-1} A^H A (A^H A)^{-1} A^H \\
+  &= A I_n (A^H A)^{-1} A^H \\
+  &= A (A^H A)^{-1} A^H \\
+\end{align*}
+
+(ii) $P^H = P$ \\
+\textit{Proof:}
+\begin{align*}
+  P^H &= (A(A^H A)^{-1}A^H)^H \\
+  &= A ((A^H A)^{-1})^H A^H \\
+  &= A ((A^H A)^H)^{-1} A^H \\
+  &= A (A^H A)^{-1} A^H \\
+\end{align*}
+(iii) $rank(P) = n$
+
+\textbf{Exercise 48} \\
+
+
+\textbf{Exercise 50} \\
+
+
+
+\end{document}

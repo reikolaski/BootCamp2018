@@ -328,24 +328,69 @@ If $m||\vec{x}||_a \leq ||\vec{x}||_b \leq M||\vec{x}||_a$, then the relation ho
 If $m_1||\vec{x}||_a \leq ||\vec{x}||_b \leq M_1||\vec{x}||_a$ and $m_2||\vec{x}||_b \leq ||\vec{x}||_c \leq M_2||\vec{x}||_b$, then the relation holds for $m_1m_2||\vec{x}||_a \leq ||\vec{x}||_c \leq M_1M_2||\vec{x}||_a$. \\
 
 (i) Show that $||\vec{x}||_2 \leq ||\vec{x}||_1 \leq \sqrt{n} ||\vec{x}||_2$. \\
-\begin{equation*}
-  ||\vec{x}||_2 \leq ||\vec{x}||_1 \leq \sqrt{n} ||\vec{x}||_2
-\end{equation*}
-
-\begin{equation*}
-  \Big (\sum_{j=1}^n |x_j|^2 \Big) ^{\frac{1}{2}} \leq \sum_{j=1}^n |x_j| \leq \sqrt{n} \Big (\sum_{j=1}^n |x_j|^2 \Big) ^{\frac{1}{2}}
-\end{equation*}
+\begin{align*}
+  ||\vec{x}||_1^2 &= (|x_1| + |x_2| + \cdots + |x_n|)^2 \geq |x_1|^2 + |x_2|^2 + \cdots + |x_n|^2 \\
+  & \implies ||\vec{x}||_1 \geq (|x_1|^2 + |x_2|^2 + \cdots + |x_n|^2)^\frac{1}{2} = ||\vec{x}||_2
+\end{align*}
+Also,
+\begin{align*}
+  &||\vec{x}||_1 = |\langle \vec{x}, \vec{1} \rangle| \leq ||\vec{x}||_2 \cdot ||\vec{1}||_2 \text{ where } ||\vec{1}||_2 = \Big(\sum_{j=1}^n 1^2\Big)^\frac{1}{2} = \sqrt{n} \\
+  & \implies ||\vec{x}||_2 \leq ||\vec{x}||_1 \leq \sqrt{n} ||\vec{x}||_2
+\end{align*}
 
 (ii) Show that $||\vec{x}||_\infty \leq ||\vec{x}||_2 \leq \sqrt{n} ||\vec{x}||_\infty$. \\
+\begin{align*}
+  ||\vec{x}||_\infty = \sup_i{|x_i|} = (\sup_i{|x_i|^2})^\frac{1}{2} \leq (|x_1|^2 + |x_2|^2 + \cdots + |x_n|^2)^\frac{1}{2} = ||\vec{x}||_2
+\end{align*}
+Also,
+\begin{align*}
+  &||\vec{x}||_2 = (|x_1|^2 + |x_2|^2 + \cdots + |x_n|^2)^\frac{1}{2} \leq (n |x_n|^2)^\frac{1}{2} = \sqrt{n} ||\vec{x}||_2 \\
+  & \implies ||\vec{x}||_\infty \leq ||\vec{x}||_2 \leq \sqrt{n} ||\vec{x}||_\infty
+\end{align*}
 
 \textbf{Exercise 28} \\
+(i) $\frac{1}{\sqrt{n}} ||A||_2 \leq ||A||_1 \leq \sqrt{n} ||A||_2$ \\
+\textit{Proof:} \\
+From Exercise 26(i), we know that
+\begin{align*}
+  &||A\vec{x}||_2 \leq ||A\vec{x}||_1 \leq \sqrt{n} ||A\vec{x}||_2 \quad \text{ and } \quad \frac{1}{\sqrt{n}} ||\vec{x}||_2 \leq ||\vec{x}||_1 \leq ||\vec{x}||_2 \\
+  & \implies \frac{1}{\sqrt{n}} \frac{||A\vec{x}||_2}{||\vec{x}||_2} \leq \frac{||A\vec{x}||_1}{||\vec{x}||_1} \leq \sqrt{n} \frac{||A\vec{x}||_2}{||\vec{x}||_2} \\
+  & \implies \frac{1}{\sqrt{n}} ||A||_2 \leq ||A||_1 \leq \sqrt{n} ||A||_2
+\end{align*}
+
+(ii) $\frac{1}{\sqrt{n}} ||A||_\infty \leq ||A||_2 \leq \sqrt{n} ||A||_\infty$ \\
+\textit{Proof:} \\
+From Exercise 26(ii), we know that
+\begin{align*}
+  &||A\vec{x}||_\infty \leq ||A\vec{x}||_2 \leq \sqrt{n} ||A\vec{x}||_\infty \quad \text{ and } \quad \frac{1}{\sqrt{n}} ||\vec{x}||_\infty \leq ||\vec{x}||_2 \leq ||\vec{x}||_\infty \\
+  & \implies \frac{1}{\sqrt{n}} \frac{||A\vec{x}||_\infty}{||\vec{x}||_\infty} \leq \frac{||A\vec{x}||_2}{||\vec{x}||_2} \leq \sqrt{n} \frac{||A\vec{x}||_\infty}{||\vec{x}||_\infty} \\
+  & \implies \frac{1}{\sqrt{n}} ||A||_\infty \leq ||A||_2 \leq \sqrt{n} ||A||_\infty
+\end{align*}
 
 \textbf{Exercise 29} \\
+Any orthonormal matrix $Q \in M_n(\mathbb{F})$ has $||Q||=1$. \\
+\textit{Proof:} \\
+$||Q|| = \sup_{\vec{x} \neq \vec{0}} \frac{||Q\vec{x}||_2}{||\vec{x}||_2} = \frac{||\vec{x}||_2}{||\vec{x}||_2} = 1$ \\
+
+For any $\vec{x} \in \mathbb{F}^n$, let $R_x: M_n(\mathbb{F} \rightarrow \mathbb{F}^n)$ be the linear transformation $A \mapsto A\vec{x}$. The induced norm of the transformation $R_x$ is equal to $||\vec{x}||_2$. \\
+\textit{Proof:} \\
+$||R_x|| = \sup_{||A||_2 \neq 0} \frac{||A\vec{x}||_2}{||A||} = \sup_{||A||_2 \neq 0} \frac{||A\vec{x}||_2 ||\vec{x}||_2}{||A||||\vec{x}||_2} \leq \sup_{||A||_2 \neq 0} \frac{||A\vec{x}||_2 ||\vec{x}||_2}{||A\vec{x}||_2} = ||\vec{x}_2||$ \\
+Since A is orthonormal, we have that $||A|| = 1$ and $||A\vec{x}||_2 = ||\vec{x}||_2 \implies ||R_x|| = ||\vec{x}_2||$. \\
 
 \textbf{Exercise 30} \\
+Let $S \in M_n(\mathbb{F})$ be an invertible matrix. Given any matrix norm $||\cdot||$ on $M_n$, define $||\cdot||_S$ by $||A||_S = ||SAS^{-1}||$. Then $||\cdot||_S$ is a matrix norm on $M_n$. \\
+\textit{Proof:} \\
+1. Positivity: $||SAS^{-1}|| \geq 0$ by definition. \\
+Also, $||SAS^{-1}|| = 0$ if and only if $A = 0$. \\
+
+2. Scale preservation: Let $a \in \mathbb{R}.$ Then $||aA||_S = ||aSAS^{-1}|| = |a| ||SAS^{-1}|| = |a| ||A||_S$. \\
+
+3. Triangle inequality: Let $A_1, A_2 \in M_n$. Then $||A_1 + A_2||_S = ||S(A_1 + A_2)S^{-1}|| = ||SA_1S^{-1} + SA_2S^{-1}|| \leq ||SA_1S^{-1}|| + ||SA_2S^{-1}|| = ||A_1||_S + ||A_2||_S$. \\
+
+4. Submultiplicative property: $||A_1A_2||_S = ||SA_1A_2S^{-1}|| = ||SA_1S^{-1}SA_2S^{-1}|| \leq ||SA_1S^{-1}|| \cdot ||SA_2S^{-1}|| = ||A_1||_S \cdot ||A_2||_S$. \\
 
 \textbf{Exercise 37} \\
-We define $\mathcal{S} = {1, x, x^2}$ to be the basis of the space V. Then we can evaluate $L$ on the basis vectors: $L[1] = 0, L[x] = 1, L[x^2] = 2$. Every function $p \in V$ can be written as a linear combination of the basis vectors:
+We define $\mathcal{S} = \{1, x, x^2\}$ to be the basis of the space V. Then we can evaluate $L$ on the basis vectors: $L[1] = 0, L[x] = 1, L[x^2] = 2$. Every function $p \in V$ can be written as a linear combination of the basis vectors:
 \begin{equation*}
   p = a_1 + a_2 x + a_3 x^2 \implies L[p] = a_1 L[1] + a_2 L[x] + a_3 L[x^2]
 \end{equation*}
@@ -364,7 +409,7 @@ L[p] =
 \] \\
 
 \textbf{Exercise 38} \\
-We again define $\mathcal{S} = {1, x, x^2}$ to be the basis of the space V, and we evaluate $D$ on the basis vectors: $D[1](x) = 0, D[x](x) = 1, D[x^2](x) = 2x$. The matrix representation of $D$ with respect to this basis is
+We again define $\mathcal{S} = \{1, x, x^2\}$ to be the basis of the space V, and we evaluate $D$ on the basis vectors: $D[1](x) = 0, D[x](x) = 1, D[x^2](x) = 2x$. The matrix representation of $D$ with respect to this basis is
 \[
 D =
 \begin{bmatrix}
@@ -388,14 +433,75 @@ D^* = -D =
 \]
 
 \textbf{Exercise 39} \\
+Let $V$ and $W$ be finite-dimensional inner product spaces. The adjoint has the following properties:
+
+(i) If $S,T \in \mathscr{L}(V;W)$, then $(S+T)^* = S^* + T^*$ and $(\alpha T)^* = \bar{\alpha}T^*, \alpha \in \mathbb{F}$. \\
+\textit{Proof:}
+\begin{align*}
+  \langle \vec{w}, (S+T)(\vec{v}) \rangle &= \langle \vec{w}, S(\vec{v}) \rangle + \langle \vec{w}, T(\vec{v}) \rangle \\
+  &= \langle S^*(\vec{w}), \vec{v} \rangle + \langle T^*(\vec{w}), \vec{v} \rangle \\
+  &= \langle (S+T)^*(\vec{w}), \vec{v} \rangle
+\end{align*}
+\begin{align*}
+  \langle (\alpha T)(\vec{w}), \vec{v} \rangle &= \alpha \langle  T(\vec{w}), \vec{v} \rangle \\
+  &= \alpha \langle \vec{w}, T^*(\vec{v}) \rangle \\
+  &= \langle \vec{w}, \bar{\alpha} T^*(\vec{v}) \rangle
+\end{align*}
+
+
+(ii) If $S \in \mathscr{L}(V;W)$, then $(S^*)^*=S$. \\
+\textit{Proof:}\\
+$\langle \vec{w}, (S^*)^* (\vec{v}) \rangle = \langle S^*(\vec{w}),  \vec{v} \rangle = \langle \vec{w}, S(\vec{v}) \rangle$ \\
+
+(iii) If $S,T \in \mathscr{L}(V)$, then $(ST)^* + T^*S^*$. \\
+\textit{Proof:} \\
+$\langle \vec{w}, (ST)^*(\vec{v}) \rangle = \langle (ST)(\vec{w}), \vec{v} \rangle = \langle T(\vec{w}), S^*(\vec{v}) \rangle = \langle \vec{w}, T^*S^*(\vec{v}) \rangle$ \\
+
+(iv) If $T \in \mathscr{L}(V)$ and $T$ is invertible, then $(T^*)^{-1} = (T^{-1})^*$. \\
+\textit{Proof:} \\
+By (iii),
+$T^*(T^*)^{-1} = (TT^{-1})^* = I^* = I$. \\
 
 \textbf{Exercise 40} \\
+Let $M_n(\mathbb{F})$ be endowed with the Frobenius inner product. Any $A \in M_n(\mathbb{F})$ defines a linear operator on $M_n(\mathbb{F})$ by left multiplication: $B \mapsto AB$.
+
+(i) Show that $A^* = A^H$. \\
+\textit{Proof:} \\
+Let $B, C \in M_n$. Then the Frobenius inner product is
+$\langle B, AC \rangle = tr(B^HAC) = tr((A^HB)^HC) = \langle A^HB, C \rangle$. \\
+
+(ii) Show that for any $A_1, A_2, A_3 \in M_n(\mathbb{F})$ we have $\langle A_2, A_3A_1 \rangle = \langle A_2A_1^*, A_3 \rangle$. \\
+\textit{Proof:} \\
+$\langle A_2, A_3A_1 \rangle = tr(A_2^HA_3A_1) = tr(A_1A_2^HA_3) = tr((A_2A_1^H)^HA_3) = \langle A_2A_1^H, A_3 \rangle = \langle A_2A_1^*, A_3 \rangle$ by the result of (i). \\
 
 \textbf{Exercise 44} \\
+Given $A \in M_{m \times n}(\mathbb{F})$ and $\vec{b} \in \mathbb{F}^m$, either $A\vec{x} = \vec{b}$ has a solution $\vec{x} \in \mathbb{F}^n$ or there exists $\vec{y} \in \mathscr{N}(A^H)$ such that $\langle \vec{y}, \vec{b} \rangle \neq 0$ (Fredholm alternative). \\
+\textit{Proof:} \\
+First, we must show that if $A\vec{x} = \vec{b}$ has a solution, then $\forall \vec{y} \in \mathscr{N}(A^H)$ we have that $\langle \vec{y}, \vec{b} \rangle = 0$. We know that $\mathscr{N}(A^H)$ is orthogonal to $\mathscr{R}(A)$ so $\forall \vec{y} \in \mathscr{N}(A^H)$ and $\forall \vec{b} \in \mathscr{R}(A)$, we have that $\langle \vec{y}, \vec{b} \rangle = 0$ by definition. \\
+On the other hand, we want to show that if $\exists \vec{y} \in \mathscr{N}(A^H)$ s.t. $\langle \vec{y}, \vec{b} \rangle \neq 0$, then $A\vec{x} = \vec{b}$ has no solution. This follows similarly to the proof of the first claim; if $\exists \vec{y} \in \mathscr{N}(A^H)$  s.t. $\langle \vec{y}, \vec{b} \rangle \neq 0$ then $b \notin \mathscr{R}(A)$, so $A\vec{x} = \vec{b}$ must have no solution. \\
 
 \textbf{Exercise 45} \\
+Consider the vector space $M_n(\mathbb{R})$ with the Frobenius inner product. Show that $Sym_n(\mathbb{R})^\perp = Skew_n(\mathbb{R})$. \\
+\textit{Proof:} \\
 
 \textbf{Exercise 46} \\
+Let $A$ be an $m \times n$ matrix. \\
+
+(i) If $\vec{x} = \mathscr{N}(A^HA)$, then $A\vec{x}$ is in both $\mathscr{R}(A)$ and $\mathscr{N}(A^H)$. \\
+\textit{Proof:} \\
+By definition, $A\vec{x} \in \mathscr{R}(A)$. Additionally, $A^HA\vec{x} = \vec{0}$, so $A\vec{x} \in \mathscr{N}(A^H)$. \\
+
+(ii) $\mathscr{N}(A^HA) = \mathscr{N}(A)$. \\
+\textit{Proof:} \\
+Let $\vec{x} \in \mathscr{N}(A)$. Then $A\vec{x} = \vec{0} \implies A^HA\vec{x} = \vec{0}$. Now let $\vec{x} \in \mathscr{N}(A^HA)$. Then $A^HA\vec{x} = \vec{0}$. To show that $A\vec{x} = \vec{0}$, we take its norm $||A\vec{x}||^2 = \langle A\vec{x}, A\vec{x} \rangle = \vec{x}^HA^HA\vec{x} = 0$. Recall that this happens if and only if $A\vec{x} = \vec{0}$. \\
+
+(iii) $A$ and $A^HA$ have the same rank. \\
+\textit{Proof:} \\
+Let $rank(A)=r$. Then we know that $rank(A^H)=r$. Since $rank(A^HA) \leq \min\{rank(A), rank(A^H)\} = r$. By part (ii), we know that $dim(\mathscr{N}(A^HA)) = dim(\mathscr{N}(A))$, so $rank(A)=rank(A^H)$. \\
+
+(iv) If $A$ has linearly independent columns, the $A^HA$ is nonsingular. \\
+\textit{Proof:} \\
+If $A$ has linearly independent columns, then $rank(A) = rank(A^HA) = n$. Since we know that $A^HA$ has full rank, it must be nonsingular. \\
 
 \textbf{Exercise 47} \\
 Let $P = A(A^H A)^{-1}A^H$ \\
@@ -415,13 +521,90 @@ Let $P = A(A^H A)^{-1}A^H$ \\
   &= A ((A^H A)^H)^{-1} A^H \\
   &= A (A^H A)^{-1} A^H \\
 \end{align*}
-(iii) $rank(P) = n$
+(iii) $rank(P) = n$ \\
+\textit{Proof:} \\
+Since $P$ is idempotent, so
+$tr(P) = tr(A(A^HA)^{-1}A^H) = tr((A^HA)^{-1}A^HA) = tr(I_n) = n = rank(P)$ \\
 
 \textbf{Exercise 48} \\
+Consider the vector space $M_n(\mathbb{R})$ with the Frobenius inner product. Let $P(A) = \frac{A+A^T}{2}$ be the map $P: M_n(\mathbb{R}) \rightarrow M_n(\mathbb{R})$. Then \\
 
+(i) $P$ is linear. \\
+\textit{Proof:} \\
+Let $A, B \in M_n(\mathbb{R}), \alpha, \beta \in \mathbb{R}$. \\
+\begin{align*}
+  P(\alpha A + \beta B) &= \frac{(\alpha A + \beta B) + (\alpha A + \beta B)^T}{2} \\
+  &= \frac{\alpha A + \beta B + \alpha A^T + \beta B^T}{2} \\
+  &= \alpha \frac{A + A^T}{2} + \beta \frac{B + B^T}{2}
+\end{align*}
+
+(ii) $P^2 = P$ \\
+\textit{Proof:} \\
+Let $A \in M_n(\mathbb{R})$. \\
+$P^2 = \frac{\frac{A+A^T}{2}+(\frac{A+A^T}{2})^T}{2} = \frac{A+A^T}{2} = P$ \\
+
+(iii) $P^* = P$ \\
+\textit{Proof:} \\
+Let $A, B \in M_n(\mathbb{R})$. \\
+\begin{align*}
+  \langle A, P(B) \rangle &= tr(A^TP(B)) \\
+  &= tr\Big(A^T\frac{B + B^T}{2}\Big) \\
+  &= tr\Big(A^T\frac{B}{2} + A^T\frac{B^T}{2}\Big) \\
+  &= tr\Big(\frac{A^T}{2}B + \frac{A^T}{2}B^T\Big) \\
+  &= tr\Big(\frac{A^T}{2}B\Big) + tr(\frac{A^T}{2}B^T\Big) \\
+  &= tr\Big(\frac{A}{2}B^T\Big) + tr(\frac{A^T}{2}B^T\Big) \\
+  &= tr\Big(\frac{A + A^T}{2}B^T\Big) \\
+  &= tr\Big(\Big(\frac{A + A^T}{2}\Big)^TB) \\
+  &= \langle P(A), B \rangle\\
+\end{align*}
+
+(iv) $\mathscr{N}(P) = Skew_n(\mathbb{R})$ \\
+\textit{Proof:} \\
+First suppose that $A \in \mathscr{N}(P)$. Then we know that \\
+$P(A) = \frac{A + A^T}{2} = 0 \implies A^T = -A$. Therefore $A \in Skew_n(\mathbb{R})$. \\
+Now assume that $A \in Skew_n(\mathbb{R})$. Then $A^T = A \implies \frac{A + A^T}{2} = \frac{A - A}{2} = 0$. Therefore $A \in \mathscr{N}(P)$, and so $\mathscr{N}(P) = Skew_n(\mathbb{R})$. \\
+
+(v) $\mathscr{R}(P) = Sym_n(\mathbb{R})$ \\
+\textit{Proof:} \\
+First suppose that $A \in \mathscr{R}(P)$. Then $\exists B \in M_n(\mathbb{R})$ s.t. $P(B) = \frac{B + B^T}{2} = A$. We know that $A^T = (\frac{B + B^T}{2})^T = \frac{B + B^T}{2} = A,$ and therefore, $A \in Sym_n(\mathbb{R})$. \\
+Now suppose that $A \in Sym_n(\mathbb{R})$. Then we know that $A = A^T$. Then $P(A) = \frac{A + A^T}{2} = \frac{2A}{2} = A, so A \in \mathscr{R}(P)$, and therefore $\mathscr{R}(P) = Sym_n(\mathbb{R})$. \\
+
+(v) $||A - P(A)||_F = \sqrt{\frac{tr(A^TA) - tr(A^2)}{2}}$ \\
+\textit{Proof:} \\
+\begin{align*}
+  ||A - P(A)||_F &= \sqrt{tr((A - P(A))^T(A - P(A)))} \\
+  &= \sqrt{tr((A^T - P(A))(A - P(A)))} \\
+  &= \sqrt{tr\Big(\Big(A^T - \frac{A + A^T}{2}\Big)\Big(A - \frac{A + A^T}{2}\Big)\Big)} \\
+  &= \sqrt{tr\Big(\Big(\frac{A^T - A}{2}\Big)\Big(\frac{A - A^T}{2}\Big)\Big)} \\
+  &= \sqrt{tr\Big(\Big(\frac{A^TA - A^2 + AA^T - (A^T)^2}{4}\Big)\Big)} \\
+  &= \sqrt{\frac{tr(A^TA) - tr(A^2)}{2}}
+\end{align*}
 
 \textbf{Exercise 50} \\
+Let $(x_i, y_i)_{i=1}^n$ be a collection of data points lying roughly on an ellipse of the form $rx^2 + sy^2 = 1$. Find the least squares approximation for $r$ and $s$. Write $A, \vec{x}$, and $\vec{b}$ for the corresponding normal equation in terms of the data $x_i$ and $y_i$ and the unknowns $r$ and $s$. \\
 
+Rewriting the ellipse equation, we get $rx^2 + sy^2 = 1 \implies \frac{1}{s} - \frac{r}{s}x^2 = y^2$. We can estimate this system using OLS on the following matrices:
+\[ A =
+\begin{bmatrix}
+  1 & x_1^2 \\
+  1 & x_2^2 \\
+  \vdots & \vdots \\
+  1 & x_n^2 \\
+\end{bmatrix}, \quad
+\vec{x} =
+\begin{bmatrix}
+  \frac{1}{s} \\
+  -\frac{r}{s}
+\end{bmatrix}, \quad
+\vec{b} =
+\begin{bmatrix}
+  y_1 \\
+  y_2 \\
+  \vdots \\
+  y_n
+\end{bmatrix}
+\]
+The cooresponding normal equation for the system is $A^HA \hat{\vec{x}} = A^H \vec{b}$.
 
 
 \end{document}

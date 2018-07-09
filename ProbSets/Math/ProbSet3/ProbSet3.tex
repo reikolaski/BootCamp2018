@@ -320,7 +320,7 @@ Let
 \]
 (i) We want to compute $\lim_{n \to \infty} A^n$ with respect to the 1-norm, i.e, find a matrix $B$ s.t. for any $\epsilon > 0$, there exists an $N > 0$ with
 \begin{align*}
-  \|A^k - B\|_1 < \epsilon \quad \text{whenever} \quad k > N \implies \|P^{-1}D^kP - B\|_1 < \epsilon
+  \|A^k - B\|_1 < \epsilon \quad \text{whenever} \quad k > N \implies \|PD^kP^{-1} - B\|_1 < \epsilon
 \end{align*}
 Using the diagonal matrix we found in Exercise 13,
 \[ D =
@@ -337,18 +337,18 @@ D^k =
 \quad \text{as} \quad k \to \infty
 \]
 we see that
-\[ P^{-1}D^kP =
+\[ PD^kP^{-1} =
 \begin{bmatrix}
-  -\frac{1}{3} & \frac{2}{3} \\
-  \frac{1}{3} & \frac{1}{3}
+  -1 & 2 \\
+  1 & 1
 \end{bmatrix}
 \begin{bmatrix}
   0 & 0 \\
   0 & 1
 \end{bmatrix}
 \begin{bmatrix}
-  -1 & 2 \\
-  1 & 1
+  -\frac{1}{3} & \frac{2}{3} \\
+  \frac{1}{3} & \frac{1}{3}
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -432,36 +432,35 @@ Assume $A, B \in M_n(\mathbb{F})$ are positive semidefinite. Then
 \end{align*}
 and $\|\cdot\|_F$ is a matrix norm. \\
 \textit{Proof:} \\
-
-
-\textbf{Exercise 31} \\
-Assume $A \in M_{m \times n}(\mathbb{F})$ and $A$ is not identically zero. Then \\
-(i) $\|A\|_2 = \sigma_1$, where $\sigma_1$ is the largest singular value of $A$ \\
-\textit{Proof:} \\
-
-(ii) if $A$ is invertible, then $\|A^{-1}\|_2 = \sigma_1^{-1}$ \\
-\textit{Proof:} \\
-
-(iii) $\|A^H\|_2^2 = \|A^T\|_2^2 = \|A^HA\|_2 = \|A\|_2^2$ \\
-\textit{Proof:} \\
-
-(iv) if $U \in M_m(\mathbb{F})$ and $V \in M_n(\mathbb{F})$ are orthonormal, then $\|UAV\|_2 = \|A\|_2$ \\
-\textit{Proof:} \\
-
-\textbf{Exercise 32} \\
-Assume $A \in M_{m \times n}(\mathbb{F})$ is of rank $r$. Then \\
-(i) if $U \in M_m(\mathbb{F})$ and $V \in M_n(\mathbb{F})$ are orthonormal, then $\|UAV\|_F = \|A\|_F$ \\
-\textit{Proof:} \\
-
-(ii) $\|A\|_F = (\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2) ^{\frac{1}{2}}$, where $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$ are the singular values of $A$ \\
-\textit{Proof:} \\
+Since $A, B$ are positive semidefinite, we know that there exist matrices $S_A$ and $S_B$ s.t. $A = S_A^H S_A$ and $B = S_B^H S_B$. Then
+\begin{align*}
+  tr(AB) &= tr(S_A^H S_A S_B^H S_B) \\
+  &= tr(S_B S_A^H S_A S_B^H) \\
+  &= tr((S_A S_B^H)^H (S_A S_B^H)) \\
+  &= \|S_A S_B^H\|_F^2 \geq 0
+\end{align*} \\
+which proves the first inequality.
+We also know that if $A, B$ are positive semidefinite, then $A, B$ are orthonormally similar to some diagonal matrices $D_A, D_B$. Since trace is invariant with respect to changes of bases, we know that
+\begin{align*}
+  tr(A)tr(B) &= tr(D_A)tr(D_B) \\
+  &= \Big(\sum_{i=1}^p \lambda_i^A\Big)\Big(\sum_{i=1}^1 \lambda_i^B\Big) \\
+  & \geq \sum_{i=1}^k \lambda_i^A \lambda_i^B \\
+  &= tr(D_A D_B) \\
+  &= tr(AB)
+\end{align*}
 
 \textbf{Exercise 33} \\
-Assume $A \in M_{n}(\mathbb{F})$. Then \\
+Assume $A \in M_{n}(\mathbb{F})$. Then
 \begin{align*}
   \|A\|_2 = \sup_{{\|\vec{x}\|_2=1}, {\|\vec{y}\|_2=1}} |\vec{y}^H A \vec{x}|
 \end{align*}
-\textit{Proof:} \\
+\textit{Proof:}
+\begin{align*}
+  \sup_{{\|\vec{x}\|_2=1}, {\|\vec{y}\|_2=1}} |\vec{y}^H A \vec{x}|
+  &= \sup_{{\|\vec{x}\|_2=1}, {\|\vec{y}\|_2=1}} \langle \vec{y}, A \vec{x} \rangle \\
+  &= \sup_{{\|\vec{x}\|_2=1}, {\|\vec{y}\|_2=1}} \|\vec{y}\|_2 \|A \vec{x}\|_2 \\
+  &= \sup_{\|\vec{x}\|_2=1} \|A \vec{x}\|_2
+\end{align*}
 
 \textbf{Exercise 36} \\
 Give an example of a $2 \times 2$ matrix whose determinant is nonzero and whose singular values are not equal to any of its eigenvalues:
@@ -524,8 +523,24 @@ If $A \in M_{m \times n}(\mathbb{F})$, then the Moore-Penrose pseudoinverse of $
 
 (v) $AA^\dagger = proj_{\mathscr{R}(A)}$ is the orthogonal projection onto $\mathscr{R}(A)$ \\
 \textit{Proof:} \\
+By part (i), we can see that $AA^\dagger AA^\dagger = AA^\dagger$, so $AA^\dagger$ is idempotent. From part(iii), we see that $AA^\dagger = U_1 U_1^H$ s.t. the columns of $U_1$ form an orthonormal basis for $\mathscr{R}(A)$. Then for some vector $\vec{x}$, we have that
+\[U_1 U_1^H \vec{x} = U_1
+\begin{bmatrix}
+  \vec{u}_1^H\vec{x} \cdots \vec{u}_r^H\vec{x}
+\end{bmatrix}^H
+= \sum_{i=1}^n \vec{u}_i^H\vec{x}\vec{u}_i
+= \sum_{i=1}^n \langle\vec{u}_i^H\vec{x}\rangle\vec{u}_i = proj_{\mathscr{R}(A)} \vec{x}
+\]
 
 (vi) $A^\dagger A = proj_{\mathscr{R}(A^H)}$ is the orthogonal projection onto $\mathscr{R}(A^H)$\\
 \textit{Proof:} \\
+As with part (v), we note that $A^\dagger A A^\dagger = A^\dagger A$, so it is idempotent. Also, we can see from part (iv) that $V_1 A^\dagger A = V_1^H$ s.t. the columns of $V_1$ form an orthonormal basis for $\mathscr{R}(A^H)$. Then for some vector $\vec{x}$, we have that
+\[V_1 V_1^H \vec{x} = V_1
+\begin{bmatrix}
+  \vec{v}_1^H\vec{x} \cdots \vec{v}_r^H\vec{x}
+\end{bmatrix}^H
+= \sum_{i=1}^n \vec{v}_i^H\vec{x}\vec{v}_i
+= \sum_{i=1}^n \langle\vec{v}_i^H\vec{x}\rangle\vec{v}_i = proj_{\mathscr{R}(A^H)} \vec{x}
+\]
 
 \end{document}

@@ -1,0 +1,455 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#3}} \\
+  Reiko Laski
+\end{flushleft}
+
+\textbf{Exercise 2} \\
+Let $V = span({1, x, x^2})$ be a subspace of the inner product space $L^2([0,1]; \mathbb{R})$ given by $D[p](x) = p'(x)$. Find the eigenvalues and eigenspaces of $D$ and their algebraic and geometric multiplicities.\\
+
+We start by evaluating $D$ on the basis vectors: $D[1](x)=0, D[x](x)=1, D[x^2](x)=2x$. The matrix representation of D with respect to this basis is
+\[ D =
+\begin{bmatrix}
+  0 & 1 & 0 \\
+  0 & 0 & 2 \\
+  0 & 0 & 0
+\end{bmatrix}
+\]
+The eigenvalues of a triangular matrix are the elements on the diagonal $\implies \lambda = 0$ is the only eigenvalue.
+
+To find the eigenspace spaces of $\lambda$ we solve $\mathscr{N}(D - \lambda I)$ \\
+\[
+\begin{bmatrix}
+  0 & 1 & 0 \\
+  0 & 0 & 2 \\
+  0 & 0 & 0
+\end{bmatrix}
+\begin{bmatrix}
+  x_1 \\ x_2 \\ x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0 \\ 0 \\ 0
+\end{bmatrix}
+\implies \vec{x} =
+\begin{bmatrix}
+  1 \\
+  0 \\
+  0
+\end{bmatrix}
+\]
+The geometric multiplicity of $\lambda$ is 1, while the algebraic multiplicity is $3$.
+\\
+
+\textbf{Exercise 4} \\
+Recall that a matrix $A \in M_n(\mathbb{F})$ is Hermitian if $A^H=A$ and skew-Hermitian if $A^H=-A$. From Exercise 4.3, we know that the characteristic polynomial of any $2 \times 2$ matrix has the form
+\begin{align*}
+  p(\lambda) = \lambda ^2 - tr(A)\lambda + det(A).
+\end{align*}
+Prove that \\
+(i) a Hermitian $2 \times 2$ matrix has only real eigenvalues. \\
+\textit{Proof:} \\
+The eigenvalues of the matrix are
+\begin{align*}
+  \lambda = \frac{tr(A) \pm \sqrt{(tr(A))^2 - 4 det(A)}}{2}.
+\end{align*}
+To see if the matrix has only real eigenvalues, we need to check that
+\begin{align}
+  (tr(A))^2 - 4 det(A) \geq 0
+\end{align}
+Note that the diagonal elements of a Hermitian matrix must be real, and the off-diagonal elements must be conjugates. Consider the matrix $A$ with $a, c \in \mathbb{R}, \beta \in \mathbb{C}$:
+\[ A =
+\begin{bmatrix}
+  a & \beta \\
+  \bar{\beta} & c
+\end{bmatrix}
+\implies tr(A) = a + c
+\text{ and } det(A) = ac - \beta\bar{\beta} = ac - \|\beta\|^2
+\]
+Substituting into the inequality in (1), we have that
+\begin{align*}
+  (a + c)^2 - 4(ac - \|\beta\|^2)
+  &= a^2 + c^2 + 2ac - 4ac + 4\|\beta\|^2 \\
+  &= a^2 + c^2 - 2ac + 4\|\beta\|^2 \\
+  &= (a - c)^2 + 4\|\beta\|^2 \geq 0.
+\end{align*}
+Therefore, the eigenvalues of the matrix must be real. \\
+
+(ii) a skew-Hermitian $2 \times 2$ matrix has only imaginary eigenvalues. \\
+\textit{Proof:} \\
+Similarly, to see if the matrix has only imaginary eigenvalues, we need to check that
+\begin{align}
+  (tr(A))^2 - 4 det(A) < 0
+\end{align}.
+Consider the matrix $B$ with $a, c \in \mathbb{R}, \beta \in \mathbb{R}$
+\[ B =
+\begin{bmatrix}
+  ai & \beta \\
+  -\bar{\beta} & ci
+\end{bmatrix}
+\implies tr(B) = ai + ci = (a + c)i
+\text{ and } det(B) = -ac + \beta\bar{\beta} = -ac + \|\beta\|^2
+\]
+Substituting into the inequality in (2), we have that
+\begin{align*}
+  ((a + c)i)^2 - 4(-ac + \|\beta\|^2)
+  &= -(a + c)^2 + 4ac - 4\|\beta\|^2 \\
+  &= -a^2 - c^2 - 2ac + 4ac - 4\|\beta\|^2 \\
+  &= -a^2 - c^2 + 2ac - 4\|\beta\|^2 \\
+  &= -(a - c)^2 - 4\|\beta\|^2 < 0.
+\end{align*}
+Therefore, the eigenvalues of the matrix must be imaginary. \\
+
+\textbf{Exercise 6} \\
+The diagonal entries of an upper-triangular (or lower-triangular) matrix are its eigenvalues. \\
+\textit{Proof:} \\
+Let $A$ be upper-triangular,
+\[
+\begin{bmatrix}
+  a_{1,1} & a_{1,2} & \cdots & a_{1,n} \\
+  0 & a_{2,2} & \cdots & a_{2,n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  0 & 0 & \cdots & a_{n,n}
+\end{bmatrix}
+\]
+Then the eigenvalues of $A$ are given by
+\[ det(A - \lambda I) =
+\begin{vmatrix}
+  a_{1,1} - \lambda & a_{1,2} & \cdots & a_{1,n} \\
+  0 & a_{2,2} - \lambda & \cdots & a_{2,n} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  0 & 0 & \cdots & a_{n,n} - \lambda
+\end{vmatrix}
+= (a_{1,1} - \lambda)(a_{2,2} - \lambda)\cdots(a_{n,n} - \lambda) = 0
+\]
+$\implies \lambda_1 = a_{1,1}, \lambda_2 = a_{2,2}, ..., \lambda_n = a_{n,n}$ \\
+We can see that these are exactly the diagonal elements of $A$. \\
+
+\textbf{Exercise 8} \\
+Let $V$ be the span of the set $S = \{\sin(x), \cos(x), \sin(2x), \cos(2x)\}$ in the vector space $C^\infty(\mathbb{R;R})$. \\
+(i) $S$ is a basis for $V$. \\
+\textit{Proof:} \\
+By definition, we know that $S$ spans the space $V$. To show that $S$ is a basis for $V$, we only need to show that the elements of $S$ are linearly independent. If this is true, then we know that there do not exist nonzero constants $a, b, c, d \in \mathbb{R}$ s.t.
+\begin{align*}
+  a \sin(x) + b \cos(x) + c \sin(2x) + d \cos(2x) = 0.
+\end{align*}
+Evaluating at $x=0$ and $x=\pi$, we get
+\begin{align*}
+  & b + d = 0 \\
+  & -b + d = 0 \\
+  & \implies b = d = 0.
+\end{align*}
+Similarly, if we evaulate at $x=\frac{\pi}{2}$ , we get $a = 0$. Since we have already showed that $a,b,d=0$, we are left with $c \sin(2x) = 0$. Clearly we must have that $c=0$ for this equation to hold $\forall x$. \\
+
+(ii) Let $D$ be the derivative operator. The matrix representation of $D$ in the basis $S$ is
+\[ D =
+\begin{bmatrix}
+  0 & -1 & 0 & 0 \\
+  1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & -2 \\
+  0 & 0 & 2 & 0
+\end{bmatrix}
+\]
+
+(iii) Two complementary $D$-invariant subspaces in $V$ are $W_1 = span\{\sin(x), \cos(x)\}$ and $W_2 = span\{\sin(2x), \cos(2x)\}$. \\
+
+\textbf{Exercise 13} \\
+Let
+\[ A =
+\begin{bmatrix}
+  0.8 & 0.4 \\
+  0.2 & 0.6
+\end{bmatrix}
+\]
+
+First, we find the eigenvalues of $A$ by solving
+\[ det(A - \lambda I) =
+\begin{vmatrix}
+  0.8 - \lambda & 0.4 \\
+  0.2 & 0.6 - \lambda
+\end{vmatrix}
+= \lambda ^2 - 1.4 \lambda + 0.4
+\implies \lambda_1 = 0.4, \lambda_2 = 1
+\] \\
+Next, we find the eigenvectors corresponding to these eigenvalues.
+\[ \lambda_1 = 0.4:
+\begin{bmatrix}
+  0.4 & 0.4 \\
+  0.2 & 0.2
+\end{bmatrix}
+\begin{bmatrix}
+  x_1 \\ x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0 \\ 0
+\end{bmatrix}
+\implies \vec{v}_1 =
+\begin{bmatrix}
+  -1 \\
+  1 \\
+\end{bmatrix}
+\]
+
+\[ \lambda_2 = 1:
+\begin{bmatrix}
+  -0.2 & 0.4 \\
+  0.2 & -0.4
+\end{bmatrix}
+\begin{bmatrix}
+  x_1 \\ x_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0 \\ 0
+\end{bmatrix}
+\implies \vec{v}_2 =
+\begin{bmatrix}
+  2 \\
+  1 \\
+\end{bmatrix}
+\]
+\[
+\implies P =
+\begin{bmatrix}
+  -1 & 2 \\
+  1 & 1
+\end{bmatrix}
+\implies P^{-1} A P =
+\begin{bmatrix}
+  0.4 & 0 \\
+  0 & 1
+\end{bmatrix}
+\]
+
+\textbf{Exercise 15} \\
+If $(\lambda_i)_{i=1}^n$ are the eigenvalues of a semisimple matrix $A \in M_n(\mathbb{F})$ and $f(x) = a_0 + a_1x + \cdots + a_nx^n$ is a polynomial, then $(f(\lambda_i))_{i=1}^n$ are the eigenvalues of $f(A) = a_0I + a_1A + \cdots + a_nA^n$. \\
+\textit{Proof:} \\
+Since $A$ is semisimple, we know that it is diagonalizable, i.e. there exist a nonsingular matrix $P$ and a diagonalizable matrix $D$ s.t. $A = P^{-1} D P$. We want to find the eigenvalues of
+\begin{align*}
+  f(A) &= a_0I + a_1A + \cdots + a_nA^n \\
+  &= a_0I + a_1P^{-1} D P + \cdots + a_nP^{-1} D^n P \\
+  &= P^{-1} (a_0I + a_1 D + \cdots + a_n D^n) P \\
+  &= P^{-1} f(D) P.
+\end{align*}
+Since $f(A)$ and $f(D)$ are similar matrices, we know that they have the same eigenvalues, and thus it suffices to show that the eigenvalues of $f(D)$ are $(f(\lambda_i))_{i=1}^n$. To prove this, we use the fact that $f(D)$ is diagonal, which means that its eigenvalues are its diagonal entries. Since we know that the eigenvalues of $D^k$ are $(\lambda_i^k)_{i=1}^n$, we can see that the matrix
+\begin{align*}
+  f(D) = a_0I + a_1 D + \cdots + a_n D^n
+\end{align*}
+has as its diagonal entries
+\begin{align*}
+  a_0I + a_1 \lambda_i + \cdots + a_n \lambda_i^n = f(\lambda_i).
+\end{align*}
+These $(f(\lambda_i))_{i=1}^n$ are the eigenvalues of $f(D)$ and therefore of $f(A)$. \\
+
+\textbf{Exercise 16} \\
+Let
+\[ A =
+\begin{bmatrix}
+  0.8 & 0.4 \\
+  0.2 & 0.6
+\end{bmatrix}
+\]
+(i) We want to compute $\lim_{n \to \infty} A^n$ with respect to the 1-norm, i.e, find a matrix $B$ s.t. for any $\epsilon > 0$, there exists an $N > 0$ with
+\begin{align*}
+  \|A^k - B\|_1 < \epsilon \quad \text{whenever} \quad k > N \implies \|P^{-1}D^kP - B\|_1 < \epsilon
+\end{align*}
+Using the diagonal matrix we found in Exercise 13,
+\[ D =
+\begin{bmatrix}
+  0.4 & 0 \\
+  0 & 1
+\end{bmatrix}
+\implies
+D^k =
+\begin{bmatrix}
+  0 & 0 \\
+  0 & 1
+\end{bmatrix}
+\quad \text{as} \quad k \to \infty
+\]
+we see that
+\[ P^{-1}D^kP =
+\begin{bmatrix}
+  -\frac{1}{3} & \frac{2}{3} \\
+  \frac{1}{3} & \frac{1}{3}
+\end{bmatrix}
+\begin{bmatrix}
+  0 & 0 \\
+  0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+  -1 & 2 \\
+  1 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \frac{2}{3} & \frac{2}{3} \\
+  \frac{1}{3} & \frac{1}{3}
+\end{bmatrix}
+= B
+\]
+
+(ii) The 1-norm, the $\infty$-norm, and the Frobenius norm are topologically equivalent, so the answer does not depend on the choice of norm. \\
+
+(iii) We want to find all the eigenvalues of the matrix $3I + 5A + A^3$. Since $A$ is diagonalizable, we know that it is semisimple. Then we can apply the Semisimple Spectral Mapping Theorem. The eigenvalues of $A$ are $\{0.4, 1\}$, so the eigenvalues of $f(A) = 3I + 5A + A^3$ are $f(0.4) = 3 + 5(0.4) + 0.4^3 = 5.064$ and $f(1) = 3 + 5(1) + 1^3 = 9$. \\
+
+\textbf{Exercise 18} \\
+If $\lambda$ is an eigenvalue of the matrix $A \in M_n(
+\mathbb{F})$, then there exists a nonzero row vector $\vec{x}^T$ s.t. $\vec{x}^T = \lambda \vec{x}^T$. \\
+\textit{Proof:} \\
+Let $\vec{x}$ be the eigenvector of the matrix $A^T$ corresponding to the eigenvalue $\lambda$. Then we know that $\vec{x}$ is nonzero and $A^T\vec{x} = \lambda\vec{x}$. Taking the transpose of both sides, we see that $\vec{x}^T A = \lambda\vec{x}^T$. \\
+
+\textbf{Exercise 20} \\
+If $A$ is Hermitian and orthonormally similar to $B$, then $B$ is also Hermitian. \\
+\textit{Proof:} \\
+Since $B$ is orthonormally similar to $A$, we know that there exists an orthonormal matrix $U$ s.t. $B = U^H A U$. Then
+\begin{align*}
+  B^H = (U^H A U)^H = U^H A^H U = U^H A U = B.
+\end{align*}
+
+\textbf{Exercise 24} \\
+Given $A \in M_n(\mathbb{C})$, define the Rayleigh quotient as
+\begin{align*}
+  \rho(\vec{x}) = \frac{\langle \vec{x}, A\vec{x} \rangle}{\|\vec{x}\|^2},
+\end{align*}
+where $\langle\cdot, \cdot\rangle$ is the usual inner product on $\mathbb{F}^n$. The Rayleigh quotient can only take on real values for Hermitian matrices and only imaginary values for skew-Hermitian matrices. \\
+\textit{Proof:} \\
+The denominator of the Rayleigh quotient is real and strictly positive for $\vec{x} \neq \vec{0}$. Therefore, we want to analyze the numerator $\langle \vec{x}, A\vec{x} \rangle$. Taking the standard inner on $\mathbb{F}^n$, we have that
+\begin{align*}
+  \langle \vec{x}, A\vec{x} \rangle &= \langle \vec{x}, \lambda \vec{x} \rangle \\
+  &= \sum_{i=1}^n \bar{x_i} \lambda x_i \\
+  &= \sum_{i=1}^n \|x_i\|^2 \lambda
+\end{align*}
+for the eigenvalue $\lambda$ of $A$ corresponding to $\vec{x}$. Since Hermitian matrices have only real eigenvalues and skew-Hermitian matrices have only imaginary eigenvalues, we know that the same holds for the Rayleigh quotient. \\
+
+\textbf{Exercise 25} \\
+Let $A \in M_n(\mathbb{C})$ be a normal matrix with eigenvalues ($\lambda_1, \cdots, \lambda_n$) and corresponding orthonormal eigenvectors [$\vec{x}_1, \cdots, \vec{x}_n$]. \\
+(i) The identity matrix can be written $I = \vec{x}_1 \vec{x}_1^H + \cdots + \vec{x}_n \vec{x}_n^H$. \\
+\textit{Proof:} \\
+Since the vectors $\vec{x}_1, \cdots, \vec{x}_n$ are orthonormal, we know that $\|x_i^H x_j\| = 0$ for $i \neq j$. Then,
+\begin{align*}
+  (\vec{x}_1 \vec{x}_1^H + \cdots + \vec{x}_n \vec{x}_n^H)\vec{x}_j
+  &= \vec{x}_1 (\vec{x}_1^H \vec{x}_j) + \cdots + \vec{x}_j (\vec{x}_j^H \vec{x}_j) + \cdots + \vec{x}_n (\vec{x}_n^H \vec{x}_j) \\
+  &= 0 + \cdots + 1 \cdot \vec{x}_j + \cdots + 0 \\
+  &= \vec{x}_j.
+\end{align*}
+Thus $\vec{x}_1 \vec{x}_1^H + \cdots + \vec{x}_n \vec{x}_n^H$ must be equal to $I$. \\
+
+(ii) $A$ can be written as $A = \lambda_1 \vec{x}_1 \vec{x}_1^H + \cdots + \lambda_n \vec{x}_n \vec{x}_n^H$. \\
+\textit{Proof:} \\
+As before, we can write
+\begin{align*}
+  (\lambda_1 \vec{x}_1 \vec{x}_1^H + \cdots + \lambda_n \vec{x}_n \vec{x}_n^H)\vec{x}_j
+  &= \lambda_1 \vec{x}_1 (\vec{x}_1^H \vec{x}_j) + \cdots + \lambda_j \vec{x}_j (\vec{x}_j^H \vec{x}_j) + \cdots + \vec{x}_n \lambda_n (\vec{x}_n^H \vec{x}_j) \\
+  &= 0 + \cdots + 1 \cdot \lambda_j \vec{x}_j + \cdots + 0 \\
+  &= \lambda_j \vec{x}_j \\
+  &= A \vec{x}_j.
+\end{align*}
+Thus $\lambda_1 \vec{x}_1 \vec{x}_1^H + \cdots + \lambda_n \vec{x}_n \vec{x}_n^H$ must be equal to $A$. \\
+
+\textbf{Exercise 27} \\
+Assume $A \in M_n(\mathbb{F})$ is positive definite. Then all its diagonal entries are real and positive. \\
+\textit{Proof:} \\
+Since $A$ is positive definite, we know that $\langle \vec{x}, A\vec{x} \rangle > 0$ $\forall \vec{x} \neq \vec{0}$. Consider the unit vector $e_i$. We can access the diagonal entries of $A$ as follows:
+\begin{align*}
+  e_i^H A e_i = a_{i,i} > 0
+\end{align*}
+This guarantees that the diagonal entries of $A$ are strictly positive. \\
+
+\textbf{Exercise 28} \\
+Assume $A, B \in M_n(\mathbb{F})$ are positive semidefinite. Then
+\begin{align*}
+  0 \leq tr(AB) \leq tr(A) tr(B),
+\end{align*}
+and $\|\cdot\|_F$ is a matrix norm. \\
+\textit{Proof:} \\
+
+
+\textbf{Exercise 31} \\
+
+\textbf{Exercise 32} \\
+
+\textbf{Exercise 33} \\
+
+\textbf{Exercise 36} \\
+Give an example of a $2 \times 2$ matrix whose determinant is nonzero and whose singular values are not equal to any of its eigenvalues:
+\[
+\begin{bmatrix}
+  -1 & 0 \\
+  0 & -1
+\end{bmatrix}
+\]
+The eigenvalue of the matrix is $\lambda = -1$, and the singular value is $\sigma = 1$. \\
+
+\textbf{Exercise 38} \\
+
+\end{document}

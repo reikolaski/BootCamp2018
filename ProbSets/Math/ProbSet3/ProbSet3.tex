@@ -435,10 +435,33 @@ and $\|\cdot\|_F$ is a matrix norm. \\
 
 
 \textbf{Exercise 31} \\
+Assume $A \in M_{m \times n}(\mathbb{F})$ and $A$ is not identically zero. Then \\
+(i) $\|A\|_2 = \sigma_1$, where $\sigma_1$ is the largest singular value of $A$ \\
+\textit{Proof:} \\
+
+(ii) if $A$ is invertible, then $\|A^{-1}\|_2 = \sigma_1^{-1}$ \\
+\textit{Proof:} \\
+
+(iii) $\|A^H\|_2^2 = \|A^T\|_2^2 = \|A^HA\|_2 = \|A\|_2^2$ \\
+\textit{Proof:} \\
+
+(iv) if $U \in M_m(\mathbb{F})$ and $V \in M_n(\mathbb{F})$ are orthonormal, then $\|UAV\|_2 = \|A\|_2$ \\
+\textit{Proof:} \\
 
 \textbf{Exercise 32} \\
+Assume $A \in M_{m \times n}(\mathbb{F})$ is of rank $r$. Then \\
+(i) if $U \in M_m(\mathbb{F})$ and $V \in M_n(\mathbb{F})$ are orthonormal, then $\|UAV\|_F = \|A\|_F$ \\
+\textit{Proof:} \\
+
+(ii) $\|A\|_F = (\sigma_1^2 + \sigma_2^2 + \cdots + \sigma_r^2) ^{\frac{1}{2}}$, where $\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_r > 0$ are the singular values of $A$ \\
+\textit{Proof:} \\
 
 \textbf{Exercise 33} \\
+Assume $A \in M_{n}(\mathbb{F})$. Then \\
+\begin{align*}
+  \|A\|_2 = \sup_{{\|\vec{x}\|_2=1}, {\|\vec{y}\|_2=1}} |\vec{y}^H A \vec{x}|
+\end{align*}
+\textit{Proof:} \\
 
 \textbf{Exercise 36} \\
 Give an example of a $2 \times 2$ matrix whose determinant is nonzero and whose singular values are not equal to any of its eigenvalues:
@@ -451,5 +474,58 @@ Give an example of a $2 \times 2$ matrix whose determinant is nonzero and whose 
 The eigenvalue of the matrix is $\lambda = -1$, and the singular value is $\sigma = 1$. \\
 
 \textbf{Exercise 38} \\
+If $A \in M_{m \times n}(\mathbb{F})$, then the Moore-Penrose pseudoinverse of $A$ satisfies the following: \\
+(i) $AA^\dagger A = A $ \\
+\textit{Proof:}
+\begin{align*}
+  AA^\dagger A &= (U_1 \Sigma_1 V_1^H) (V_1 \Sigma_1^{-1} U_1^H) (U_1 \Sigma_1 V_1^H) \\
+  &= U_1 \Sigma_1 V_1^H V_1 \Sigma_1^{-1} U_1^H U_1 \Sigma_1 V_1^H \\
+  &= U_1 \Sigma_1 \Sigma_1^{-1} \Sigma_1 V_1^H \\
+  &= U_1 \Sigma_1 V_1^H \\
+  &= A
+\end{align*}
+
+(ii) $A^\dagger AA^\dagger = A^\dagger $ \\
+\textit{Proof:}
+\begin{align*}
+  A^\dagger AA^\dagger &= (V_1 \Sigma_1^{-1} U_1^H) (U_1 \Sigma_1 V_1^H) (V_1 \Sigma_1^{-1} U_1^H) \\
+  &= V_1 \Sigma_1^{-1} U_1^H U_1 \Sigma_1 V_1^H V_1 \Sigma_1^{-1} U_1^H \\
+  &= V_1 \Sigma_1^{-1} \Sigma_1 \Sigma_1^{-1} U_1^H \\
+  &= V_1 \Sigma_1^{-1} U_1^H \\
+  &= A^\dagger
+\end{align*}
+
+(iii) $(AA^\dagger)^H = AA^\dagger $ \\
+\textit{Proof:}
+\begin{align*}
+  (A A^\dagger)^H &= ((U_1 \Sigma_1 V_1^H) (V_1 \Sigma_1^{-1} U_1^H))^H \\
+  &= (V_1 \Sigma_1^{-1} U_1^H)^H (U_1 \Sigma_1 V_1^H)^H \\
+  &= U_1 (\Sigma_1^{-1})^H V_1^H V_1 \Sigma_1^H U_1^H \\
+  &= U_1 (\Sigma_1^{-1})^H \Sigma_1^H U_1^H \\
+  &= U_1 (\Sigma_1^H)^{-1} \Sigma_1^H U_1^H \\
+  &= U_1 U_1^H \\
+  &= U_1 \Sigma_1 \Sigma_1^{-1} U_1^H \\
+  &= U_1 \Sigma_1 V_1^H V_1 \Sigma_1^{-1} U_1^H \\
+  &= (U_1 \Sigma_1 V_1^H) (V_1 \Sigma_1^{-1} U_1^H) \\
+  &= A A^\dagger
+\end{align*}
+
+(iv) $(A^\dagger A)^H = A^\dagger A $ \\
+\textit{Proof:}
+\begin{align*}
+  (A^\dagger A)^H &= (V_1 \Sigma_1^{-1} U_1^H)(U_1 \Sigma_1 V_1^H) \\
+  &= V_1 \Sigma_1^{-1} U_1^H U_1 \Sigma_1 V_1^H \\
+  &= V_1 V_1^H \\
+  &= V_1 \Sigma_1^{-1} \Sigma_1 V_1^H \\
+  &= V_1 \Sigma_1^{-1} U_1^H U_1 \Sigma_1 V_1^H \\
+  &= (V_1 \Sigma_1^{-1} U_1^H)(U_1 \Sigma_1 V_1^H) \\
+  &= A^\dagger A
+\end{align*}
+
+(v) $AA^\dagger = proj_{\mathscr{R}(A)}$ is the orthogonal projection onto $\mathscr{R}(A)$ \\
+\textit{Proof:} \\
+
+(vi) $A^\dagger A = proj_{\mathscr{R}(A^H)}$ is the orthogonal projection onto $\mathscr{R}(A^H)$\\
+\textit{Proof:} \\
 
 \end{document}

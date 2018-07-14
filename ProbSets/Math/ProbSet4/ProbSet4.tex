@@ -1,0 +1,486 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#4}} \\
+  Reiko Laski
+\end{flushleft}
+
+\textbf{Exercise 6.6} \\
+$f(x,y) = 3x^2y + 4xy^2 + xy$\\
+\[ D f(x, y) =
+\begin{bmatrix}
+  6xy + 4y^2 + y \\
+  3x^2 + 8xy + x
+\end{bmatrix}
+=
+\begin{bmatrix}
+  0 \\ 0
+\end{bmatrix}
+\]
+\begin{align*}
+  &\qquad\implies x = -\frac{1}{3}, \quad \ y = 0 \\
+  &\qquad\qquad\ \ x = -\frac{1}{9}, \quad \ y = -\frac{1}{12} \\
+  &\qquad\qquad\ \ x = 0, \qquad \ y = -\frac{1}{4} \\
+  &\qquad\qquad\ \ x = 0, \qquad \ y = 0
+\end{align*}
+\[ D^2 f(x,y) =
+\begin{bmatrix}
+  6y & 6x + 8y + 1 \\
+  6x + 8y + 1 & 8x \\
+\end{bmatrix}
+\]
+\[ D^2 f\Big(-\frac{1}{3}, \ 0\Big) =
+\begin{bmatrix}
+  0 & -1 \\
+  -1 & -\frac{8}{3} \\
+\end{bmatrix}
+\implies \lambda = -\frac{1}{3}, \ 3
+\]
+\[ D^2 f\Big(-\frac{1}{9}, \ -\frac{1}{12}\Big) =
+\begin{bmatrix}
+  -\frac{1}{2} & -\frac{1}{3} \\
+  -\frac{1}{3} & -\frac{8}{9} \\
+\end{bmatrix}
+\implies \lambda = -1.08, \ -0.31
+\]
+\[ D^2 f\Big(0, \ -\frac{1}{4}\Big) =
+\begin{bmatrix}
+  -\frac{3}{2} & -1 \\
+  -1 & 0 \\
+\end{bmatrix}
+\implies \lambda = \frac{1}{2}, \ -2
+\]
+\[ D^2 f(0, 0) =
+\begin{bmatrix}
+  0 & 1 \\
+  1 & 0 \\
+\end{bmatrix}
+\implies \lambda = -1, \ 1
+\]
+$(-\frac{1}{3}, \ 0) \implies$ saddle point \\
+$(-\frac{1}{9}, \ -\frac{1}{12})\implies$ maximizer \\
+$(0, \ -\frac{1}{4})\implies$ saddle point \\
+$(0, \ 0)\implies$ saddle point \\
+
+\textbf{Exercise 6.7} \\
+(i) For any square matrix $A$ the matrix $Q = A^T + A$ is symmetric, and $\vec{x}^TQ\vec{x} = \vec{x}^TA^T\vec{x} + \vec{x}^TA\vec{x} = 2\vec{x}^TA\vec{x}$. Then
+\begin{align*}
+  \vec{x}^TA\vec{x} - \vec{b}^T\vec{x} + c = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x} + c.
+\end{align*}
+\textit{Proof:} \\
+Let $A$ be a square matrix. Then $Q = A + A^T \implies Q^T = (A + A^T)^T = A + A^T = Q$, so $Q = A + A^T$ is symmetric. Then
+\begin{align*}
+  \vec{x}^TQ\vec{x}
+  &= \vec{x}^T(A + A^T)\vec{x} \\
+  &= \vec{x}^TA\vec{x} + \vec{x}^TA^T\vec{x} \\
+  &= \vec{x}^TA\vec{x}.
+\end{align*}
+By substitution, we can show that the objective function of the problem is
+\begin{align*}
+  \vec{x}^TA\vec{x} - \vec{b}^T\vec{x} + c = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x} + c.
+\end{align*}
+
+(ii) Any minimizer $\vec{x}^*$ of $f$ is a solution of the equation
+\begin{align*}
+  Q^T\vec{x}^* = \vec{b}.
+\end{align*}
+\textit{Proof:} \\
+
+(iii) The quadratic minimization problem will have a unique solution if and only if $Q$ is positive definite, and in that cause, the mnimizer is the solution of the linear system in part (i). \\
+
+\textbf{Exercise 6.11} \\
+Consider the quadratic function $f(x)=ax^2+bx+c$, where $a>0$, and $b,c \in \mathbb{R}$. For any initial guess $x_0 \in \mathbb{R}$, one iteration of Newton's method lands at the unique minimizer of $f$.\\
+\textit{Proof:} \\
+As shown in the textbook, for an intial guess $x_0$ we have that
+\begin{align*}
+  & q(x_0) = f(x_0) = ax_0^2 + bx_0 + c \\
+  & q'(x_0) = f'(x_0) = 2ax_0 + b \\
+  & q''(x_0) = f''(x_0) = 2a
+\end{align*}
+Solving for $x_1$, we find that
+\begin{align*}
+  x_1 = x_0 - \frac{2ax_0 + b}{2a} = x_0 - x_0 - \frac{b}{2a} = - \frac{b}{2a}.
+\end{align*}
+Recall that this is the formula for the minimizer of a parabola, and thus Newton's method solved for the unique minimizer in one iteration. \\
+
+\textbf{Exercise 7.1} \\
+If $S$ is a nonempty subset of $V$, then $conv(S)$ is convex. \\
+\textit{Proof:} \\
+Let $\vec{x}, \vec{y} \in S$ s.t.
+\begin{align}
+  &\vec{x} = \alpha_1 \vec{x}_1 + \cdots + \alpha_k \vec{x}_k \in S\\
+  &\vec{y} = \beta_1 \vec{x}_1 + \cdots + \beta_k \vec{x}_k \in S
+\end{align}
+where $x_1, ..., x_k \in S, \sum_{i=1}^k \alpha_i = 1, \sum_{i=1}^k \beta_i = 1$. Multiplying equation (1) by $\lambda$ and equation (2) by $1-\lambda$, we get
+\begin{align*}
+  &\lambda\vec{x} = \lambda\alpha_1 \vec{x}_1 + \cdots + \lambda\alpha_k \vec{x}_k \\
+  &(1-\lambda)\vec{y} = (1-\lambda)\beta_1 \vec{x}_1 + \cdots + (1-\lambda)\beta_k \vec{x}_k
+\end{align*}
+where $\sum_{i=1}^k \lambda\alpha_i = \lambda\sum_{i=1}^k \alpha_i = \lambda$ and $\sum_{i=1}^k (1-\lambda)\beta_i = (1-\lambda)\sum_{i=1}^k \beta_i = 1-\lambda$. Then we know that
+\begin{align*}
+  & \lambda\alpha_1 \vec{x}_1 + \cdots + \lambda\alpha_k \vec{x}_k + (1-\lambda)\beta_1 \vec{x}_1 + \cdots + (1-\lambda)\beta_k \vec{x}_k \\
+  &= \lambda\vec{x} + (1-\lambda)\vec{y} \in S
+\end{align*}
+This shows that $conv(S)$ is convex. \\
+
+\textbf{Exercise 7.2} \\
+(i) A hyperplane is convex. \\
+\textit{Proof:} \\
+Let $P$ be a hyperplane and let $\vec{x}, \vec{y} \in P$, i.e. $\langle \vec{a}, \vec{x} \rangle = b$ and $\langle \vec{a}, \vec{y} \rangle = b$. Then for some $0 \leq \lambda \leq 1$,
+\begin{align*}
+  \langle \vec{a}, \lambda \vec{x} + (1-\lambda) \vec{y} \rangle
+  &= \langle \vec{a}, \lambda \vec{x} \rangle + \langle \vec{a}, (1-\lambda) \vec{y} \rangle \\
+  &= \lambda \langle \vec{a}, \vec{x} \rangle + (1-\lambda) \langle \vec{a}, \vec{y} \rangle \\
+  &= \lambda b + (1-\lambda) b \\
+  &= b
+\end{align*}
+which means that $\lambda \vec{x} + (1-\lambda) \vec{y} \in P$. \\
+
+(ii) A half space is convex. \\
+\textit{Proof:} \\
+Let $H$ be a half space and let $\vec{x}, \vec{y} \in H$, i.e. $\langle \vec{a}, \vec{x} \rangle = c$ and $\langle \vec{a}, \vec{y} \rangle = d$ where $c, d \leq b$. Then for some $0 \leq \lambda \leq 1$,
+\begin{align*}
+  \langle \vec{a}, \lambda \vec{x} + (1-\lambda) \vec{y} \rangle
+  &= \langle \vec{a}, \lambda \vec{x} \rangle + \langle \vec{a}, (1-\lambda) \vec{y} \rangle \\
+  &= \lambda \langle \vec{a}, \vec{x} \rangle + (1-\lambda) \langle \vec{a}, \vec{y} \rangle \\
+  &= \lambda c + (1-\lambda) d \\
+  &\leq \lambda b + (1-\lambda) b \\
+  &= b
+\end{align*}
+which means that $\lambda \vec{x} + (1-\lambda) \vec{y} \in H$. \\
+
+\textbf{Exercise 7.4} \\
+Let $C \subset \mathbb{R}^n$ be nonempty, closed, and convex. A point $\vec{p} \in C$ is the projection of $\vec{x}$ onto $C$ if and only if
+\begin{align}
+  \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle \geq 0, \ \forall \vec{y} \in C.
+\end{align}
+\textit{Proof:} \\
+First, prove the following statements: \\
+(i) $\|\vec{x} - \vec{y}\|^2 = \|\vec{x} - \vec{p}\|^2 + \|\vec{p} - \vec{y}\|^2 + 2 \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle$. \\
+\textit{Subproof:}
+\begin{align*}
+  \|\vec{x} - \vec{y}\|^2
+  &= \|\vec{x} - \vec{p} + \vec{p} - \vec{y}\|^2 \\
+  &= \langle (\vec{x} - \vec{p}) + (\vec{p} - \vec{y}), (\vec{x} - \vec{p}) + (\vec{p} - \vec{y})\rangle \\
+  &= \langle \vec{x} - \vec{p}, \vec{x} - \vec{p} \rangle + \langle \vec{p} - \vec{y}, \vec{p} - \vec{y} \rangle + 2 \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle \\
+  &= \|\vec{x} - \vec{p}\|^2 + \|\vec{p} - \vec{y}\|^2 + 2 \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle
+\end{align*}
+
+(ii) If the equality in (i) holds, then $\|\vec{x} - \vec{y}\| > \|\vec{x} - \vec{p}\|$ for all $\vec{y} \in C, \vec{y} \neq \vec{p}$. \\
+\textit{Subproof:} \\
+If the equality in part (i) holds, then $\langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle \geq 0$. Then
+\begin{align*}
+  &\|\vec{x} - \vec{y}\|^2 = \|\vec{x} - \vec{p}\|^2 + \|\vec{p} - \vec{y}\|^2 + 2 \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle \\
+  &\implies \|\vec{x} - \vec{y}\|^2 > \|\vec{x} - \vec{p}\|^2 \\
+  &\implies \|\vec{x} - \vec{y}\| > \|\vec{x} - \vec{p}\|
+\end{align*}
+
+(iii) If $\vec{z} = \lambda \vec{y} + (1 - \lambda)\vec{p}$, where $0 \leq \lambda \leq 1$, then
+\begin{align*}
+  \|\vec{x} - \vec{z}\|^2 = \|\vec{x} - \vec{p}\|^2 + 2\lambda \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle + \lambda^2 \|\vec{y} - \vec{p}\|^2.
+\end{align*}
+\textit{Subproof:}
+\begin{align*}
+  \|\vec{x} - \vec{z}\|^2
+  &= \|\vec{x} - \lambda \vec{y} - (1 - \lambda)\vec{p}\|^2 \\
+  &= \|\vec{x} - \lambda \vec{y} - \vec{p} - \lambda\vec{p}\|^2 \\
+  &= \langle (\vec{x} - \vec{p}) - \lambda (\vec{y} - \vec{p}), (\vec{x} - \vec{p}) - \lambda (\vec{y} - \vec{p}) \rangle \\
+  &= \langle \vec{x} - \vec{p}, \vec{x} - \vec{p} \rangle - 2\lambda \langle \vec{x} - \vec{p}, \vec{y} - \vec{p} \rangle + \lambda^2 \langle \vec{y} - \vec{p}, \vec{y} - \vec{p} \rangle \\
+  &= \|\vec{x} - \vec{p}\|^2 + 2\lambda \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle + \lambda^2 \|\vec{y} - \vec{p}\|^2
+\end{align*}
+
+(iv) If $\vec{p}$ is a projection of $\vec{x}$ onto the convex set $C$, then $\langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle \geq 0$ for all $\vec{y} \in C$.
+\textit{Subproof:} \\
+From part (iii), we know that
+\begin{align*}
+  &\|\vec{x} - \vec{z}\|^2 = \|\vec{x} - \vec{p}\|^2 + 2\lambda \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle + \lambda^2 \|\vec{y} - \vec{p}\|^2
+  \\
+  & \implies \|\vec{x} - \vec{z}\|^2 - \|\vec{x} - \vec{p}\|^2 = 2\lambda \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle + \lambda^2 \|\vec{y} - \vec{p}\|^2
+\end{align*}
+Since $\vec{p} = proj_C\vec{x}$ and $\vec{z} \in C$,
+\begin{align*}
+  &\|\vec{x} - \vec{p}\| \leq \|\vec{x} - \vec{z}\|
+  \\
+  &\implies \|\vec{x} - \vec{p}\|^2 \leq \|\vec{x} - \vec{z}\|^2
+  \\
+  &\implies 0 \leq \|\vec{x} - \vec{z}\|^2 - \|\vec{x} - \vec{p}\|^2
+\end{align*}
+Therefore,
+\begin{align*}
+  0 \leq 2 \langle \vec{x} - \vec{p}, \vec{p} - \vec{y} \rangle + \lambda\|\vec{y} - \vec{p}\|^2, \quad \forall \vec{y} \in C, \lambda \in [0,1].
+\end{align*}
+
+\textbf{Exercise 7.8} \\
+If $f: \mathbb{R}^m \to \mathbb{R}$ is convex, if $A \in M_{m \times n}(\mathbb{R})$, and if $\vec{b} \in \mathbb{R}^m$, then the function $g: \mathbb{R}^m \to \mathbb{R}$ given by $g(\vec{x}) = f(A\vec{x} + \vec{b})$ is convex. \\
+\textit{Proof:} \\
+Let $\vec{x}_1, \vec{x}_2 \in \mathbb{R}$. Then we know that
+\begin{align*}
+  f(\lambda\vec{x}_1 + (1 - \lambda)\vec{x}_2) \leq \lambda f(\vec{x}_1) + (1 - \lambda) f(\vec{x}_2)
+\end{align*}
+We want to know if $g$ is convex:
+\begin{align*}
+  g(\lambda\vec{x}_1 + (1 - \lambda)\vec{x}_2)
+  &=
+  f(A(\lambda\vec{x}_1 + (1 - \lambda)\vec{x}_2) + \vec{b}) \\
+  &= f(A\lambda\vec{x}_1 + A(1 - \lambda)\vec{x}_2 + \vec{b}) \\
+  &= f(\lambda(A\vec{x}_1 + \vec{b}) + (1 - \lambda)(A\vec{x}_2 + \vec{b})) \\
+  & \leq \lambda f(A\vec{x}_1 + \vec{b}) + (1 - \lambda) f(A\vec{x}_2 + \vec{b}) \\
+  &= \lambda g(\vec{x}_1) + (1 - \lambda) g(\vec{x}_2)
+\end{align*}
+
+\textbf{Exercise 7.12} \\
+(i) The set $PD_n(\mathbb{R})$ of positive-definite matrices in $M_n(\mathbb{R})$ is convex. \\
+\textit{Proof:} \\
+Let $A, B \in PD_n(\mathbb{R})$. Then for all $\vec{x} \in \mathbb{R}^n$,
+\begin{align*}
+  \vec{x}^TA\vec{x} > 0 \ \text{and} \  \vec{x}^TB\vec{x} > 0
+\end{align*}
+We want to know if $\lambda A + (1 - \lambda)B \in PD_n(\mathbb{R})$:
+\begin{align*}
+  \vec{x}^T(\lambda A + (1 - \lambda)B)\vec{x}
+  &= \lambda\vec{x}^TA\vec{x} + (1 - \lambda)\vec{x}^TB\vec{x} > 0
+\end{align*}
+Therefore the set $PD_n(\mathbb{R})$ is convex. \\
+
+(ii) The function $f(X) = - \log(\det(X))$ is convex on $PD_n(\mathbb{R})$. \\
+\textit{Proof:}
+To do this, we must prove the following: \\
+(a) The function $f$ is convex if for every $A, B \in PD_n(\mathbb{R})$ the function $g(t): [0,1] \to \mathbb{R}$ given by $g(t) = f(tA +(1-t)B)$ is convex.\\
+\textit{Subproof:}
+Let $g$ be convex. Then we know that
+\begin{align*}
+  &g(\lambda t_1 + (1-\lambda)t_2) \leq \lambda g(t_1) + (1 - \lambda)g(t_2)
+  \\
+  &\implies f[(\lambda t_1 + (1-\lambda)t_2)A + (1 - (\lambda t_1 + (1-\lambda)t_2))B]
+  \\
+  &\qquad \qquad \qquad \qquad \leq \lambda f(t_1 A + (1-t_1)B) + (1 - \lambda)f(t_2 A + (1-t_2)B)
+  \\
+  &\implies f[(\lambda t_1 + (1-\lambda)t_2)A + (1 - (\lambda t_1 + (1-\lambda)t_2))B] \\
+  &\qquad \qquad \qquad \qquad \leq \lambda f(t_1 A + (1-t_1)B) + (1 - \lambda)f(t_2 A + (1-t_2)B)
+\end{align*}
+Expanding LHS of the equation,
+\begin{align*}
+  &f[(\lambda t_1 + (1-\lambda)t_2)A + (1 - (\lambda t_1 + (1-\lambda)t_2))B]
+  \\
+  &= f[(\lambda t_1 + (1-\lambda)t_2)A + (\lambda + (1 - \lambda) - (\lambda t_1 + (1-\lambda)t_2))B]
+  \\
+  &= f[\lambda t_1 A + (1-\lambda) t_2 A + \lambda B + (1 - \lambda)B - \lambda t_1 B + (1-\lambda) t_2 B]
+  \\
+  &= f[\lambda t_1 A + (1-\lambda) t_2 A + \lambda (1 - t_1) B + (1 - \lambda) (1 - t_2) B] \\
+  &= f[\lambda (t_1 A + (1 - t_1) B) + (1-\lambda)(t_2 A + (1 - t_2) B)]
+\end{align*}
+The inequlity above becomes
+\begin{align*}
+  &f[\lambda (t_1 A + (1 - t_1) B) + (1-\lambda)(t_2 A + (1 - t_2) B)] \\
+  &\qquad \qquad \qquad \qquad \leq \lambda f(t_1 A + (1-t_1)B) + (1 - \lambda)f(t_2 A + (1-t_2)B)
+\end{align*}
+Letting $X = t_1 A + (1 - t_1) B$ and $Y = t_2 A + (1 - t_2) B$, we get
+\begin{align*}
+  &f[\lambda X + (1-\lambda)Y]
+  \leq \lambda f(X) + (1 - \lambda)f(Y)
+\end{align*}
+and we can see that $f$ is a convex function. \\
+
+(b) There is an $S$ such that $S^HS = A$ and
+\begin{align*}
+  g(t)
+  &= -\log(\det(S^H(tI + (1-t)(S^H)^{-1}BS^{-1})S)) \\
+  &= -\log(\det(A)) - \log(\det(tI + (1-t)(S^H)^{-1}BS^{-1})S))
+\end{align*}
+\textit{Subproof:} \\
+Since $A$ is positive definite, we know that there exists an $S$ such that $A = S^HS$.
+\begin{align*}
+  g(t) &= f(tA + (1-t)B)
+  \\
+  &= -\log(\det(tA + (1-t)B))
+  \\
+  &= -\log(\det(tS^HS + (1-t)B))
+  \\
+  &= -\log(\det(tS^HS + S^H(S^H)^{-1}(1-t)BS^{-1}S))
+  \\
+  &= -\log(\det(S^H(tI + (1-t)(S^H)^{-1}BS^{-1})S))
+\end{align*}
+Then
+\begin{align*}
+  g(t) &= -\log(\det(S^HS)\det(tI + (1-t)(S^H)^{-1}BS^{-1}))
+  \\
+  &= -\log(\det(S^HS)) -\log(\det(tI + (1-t)(S^H)^{-1}BS^{-1}))
+  \\
+  &= -\log(\det(A)) -\log(\det(tI + (1-t)(S^H)^{-1}BS^{-1}))
+\end{align*}
+
+(c)
+\begin{align*}
+  g(t) = - \sum_{i=1}^n \log(t+(1-t)\lambda_i) - \log(\det(A)),
+\end{align*}
+where $\lambda_1, ..., \lambda_n$ are the eigenvalues of $(S^H)^{-1}BS^{-1}$. \\
+\textit{Subproof:}
+Let $\lambda_1, ..., \lambda_n$ be the eigenvalues of $(S^H)^{-1}BS^{-1}$. Then we know that
+\begin{align*}
+  \det(tI + (1-t)(S^H)^{-1}BS^{-1}) = \prod_{i=1}^n(t + (1-t)\lambda_i)
+\end{align*}
+and the last equality in part (b) becomes
+\begin{align*}
+  g(t) &= -\log(\det(tI + (1-t)(S^H)^{-1}BS^{-1})) -\log(\det(A))
+  \\
+  &= -\log(\prod_{i=1}^n(t + (1-t)\lambda_i)) -\log(\det(A))
+  \\
+  &= -\sum_{i=1}^n\log(t + (1-t)\lambda_i) -\log(\det(A))
+\end{align*}
+
+(d) $g''(t) \geq 0$ for all $t \in [0,1]$. \\
+\textit{Subproof:} \\
+\begin{align*}
+  &g(t) = -\sum_{i=1}^n\log(t + (1-t)\lambda_i) -\log(\det(A))
+  \\
+  &\implies g'(t) = -\sum_{i=1}^n \frac{1-\lambda_i}{t+(1-t)\lambda_i}
+  \\
+  &\implies g''(t) = -\sum_{i=1}^n \frac{-(1-\lambda)^2}{(t+(1-t)\lambda_i)^2} = \sum_{i=1}^n \frac{(1-\lambda)^2}{(t+(1-t)\lambda_i)^2} \geq 0
+\end{align*}
+
+\textbf{Exercise 7.13} \\
+If $f: \mathbb{R}_n \to \mathbb{R}$ is convex and bounded above, then $f$ is constant. \\
+\textit{Proof:} \\
+On the contrary, suppose $f$ is not constant. WLOG, assume that $f(\vec{x}_1) < f(\vec{x}_3)$ for some $\vec{x}_1, \vec{x}_2 \in \mathbb{R}^n$. Since $f$ is convex, we know that for there exists an $\vec{x}_2$ s.t.
+\begin{align*}
+  f(\vec{x}_2) = f(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_3) &\leq \lambda f(\vec{x}_1) + (1-\lambda)f(\vec{x}_3)
+  \\
+  & < f(\vec{x}_3)
+\end{align*}
+Since $f$ is bounded above by hypothesis, we know that there exists some $M \in \mathbb{R}$ s.t. $f(\vec{x}) \leq M$ for all $\vec{x} \in \mathbb{R}^n$. Letting $f(\vec{x}_2) = M$, we know that $f(\vec{x}_3) > M$, which is a contradiction. Therefore, $f$ must be constant. \\
+
+\textbf{Exercise 7.20} \\
+If $f: \mathbb{R}_n \to \mathbb{R}$ is convex and $-f$ is also convex, then $f$ is affine.\\
+\textit{Proof:} \\
+Let $\vec{x}_1, \vec{x}_2 \in \mathbb{R}^n$.
+Since $f$ is convex,
+\begin{align*}
+  f(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2) \leq \lambda f(\vec{x}_1) + (1-\lambda)f(\vec{x}_2)
+\end{align*}
+Since $-f$ is also convex,
+\begin{align*}
+  &-f(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2) \leq -\lambda f(\vec{x}_1) - (1-\lambda)f(\vec{x}_2)
+  \\
+  &\implies f(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2) \geq \lambda f(\vec{x}_1) + (1-\lambda)f(\vec{x}_2)
+\end{align*}
+Therefore,
+\begin{align*}
+  f(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2) = \lambda f(\vec{x}_1) + (1-\lambda)f(\vec{x}_2)
+\end{align*}
+We can define another function $g(\vec{x}) = f(\vec{x}) - f(\vec{0})$, which has the property $g(\vec{0})=0$.
+\begin{align*}
+  g(\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2) &= f((\lambda \vec{x}_1 + (1-\lambda)\vec{x}_2)) - f(\vec{0})
+  \\
+  &= \lambda f(\vec{x}_1) + (1-\lambda)f(\vec{x}_2) - \lambda f(\vec{0}) - (1 - \lambda) f(\vec{0})
+  \\
+  &= \lambda (f(\vec{x}_1) - f(\vec{0})) + (1-\lambda)(f(\vec{x}_2) - f(\vec{0}))
+  \\
+  &= \lambda g(\vec{x}_1) + (1-\lambda)g(\vec{x}_2)
+\end{align*}
+To show that $f$ is affine, it suffices to show that $g$ is linear. It is obvious that $g(\lambda \vec{x}) = \lambda g(\vec{x})$ for $\lambda \in [0, 1]$. For $\lambda > 1$, note that $\frac{1}{\lambda} \in (0, 1)$.
+\begin{align*}
+  g(\vec{x})
+  &= g\Big(\lambda \frac{1}{\lambda} \vec{x} + \Big(1-\frac{1}{\lambda}\Big)(\vec{0})\Big)
+  \\
+  &= \frac{1}{\lambda} g(\lambda \vec{x}) + (1-\frac{1}{\lambda})g(\vec{0})
+  \\
+  &= \frac{1}{\lambda} g(\lambda \vec{x})
+\end{align*}
+\begin{align*}
+  \implies \lambda g(\vec{x}) = g(\lambda \vec{x})
+\end{align*}
+We use the above equality to show that $g(\vec{x}_1 + \vec{x}_2) = g(\vec{x}_1) + g(\vec{x}_2)$.
+\begin{align*}
+  g(\vec{x}_1 + \vec{x}_2)
+  &= g\Big(\frac{1}{2}(2\vec{x}_1 + \frac{1}{2}(2\vec{x}_2)\Big) \\
+  &= \frac{1}{2}g(2\vec{x}_1) + \frac{1}{2}g(2\vec{x}_2) \\
+  &= g(\vec{x}_1) + g(\vec{x}_2)
+\end{align*}
+This shows that $g$ is linear $\implies$ $f$ is affine. \\
+
+\textbf{Exercise 7.21} \\
+If $D \subset \mathbb{R}$ with $f: \mathbb{R}_n \to D$, and if $\phi: D \to \mathbb{R}$ is a strictly increasing function, then $\vec{x}^*$ is a local minimizer for the problem
+\begin{align*}
+  &\text{minimize} \qquad \ \phi \circ f(\vec{x}) \\
+  &\text{subject to} \qquad G(\vec{x}) \preceq \vec{0} \\
+  & \ \qquad\qquad\qquad H(\vec{x}) = \vec{0}
+\end{align*}
+if and only if $\vec{x}^*$ is a local minimizer for the problem
+\begin{align*}
+  &\text{minimize} \qquad \ f(\vec{x}) \\
+  &\text{subject to} \qquad G(\vec{x}) \preceq \vec{0} \\
+  & \ \qquad\qquad\qquad H(\vec{x}) = \vec{0}
+\end{align*}
+\textit{Proof:} \\
+Let $\vec{x}^*$ be a minimizer of $f$. Then $f(\vec{x}^*) \leq f(\vec{x})$ for all $\vec{x}$ in an open neighborhood U around $\vec{x}^*$. Since $\phi$ is strictly increasing, we know that $\phi(f(\vec{x}^*)) \leq \phi(f(\vec{x}))$ for all $\vec{x} \in U$. Therefore $\vec{x}^*$ is a minimizer of $\phi \circ f$.
+
+Now let $\vec{x}^*$ be a minimizer of $\phi \circ f$. Then $\phi(f(\vec{x}^*)) \leq \phi(f(\vec{x}))$ for all $\vec{x}$ in an open neighborhood V. Since $\phi$ is strictly increasing, we know that $f(\vec{x}^*) \leq f(\vec{x})$ for all $\vec{x} \in V$. Therefore $\vec{x}^*$ is a minimizer of $f$.
+
+\end{document}

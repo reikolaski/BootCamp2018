@@ -1,0 +1,249 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=0.75in,rmargin=0.75in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{DSGE Problem Set}} \\
+  Reiko Laski
+\end{flushleft}
+
+\textbf{\large{DSGE}}
+
+\textbf{Exercise 1}
+\begin{align*}
+  K_{t+1} &= Ae^{z_t}K_t^\alpha \\
+  K_{t+2} &= Ae^{z_{t+1}}K_{t+1}^\alpha \\
+  &= Ae^{z_{t+1}}(Ae^{z_t}K_t^\alpha)^\alpha
+\end{align*}
+
+\begin{align*}
+  \frac{1}{e^{z_t}K_t^\alpha - Ae^{z_t}K_t^\alpha}
+  &=
+  \beta E_t\Big\{\frac{\alpha e^{z_{t+1}}(Ae^{z_t}K_t^\alpha)^{\alpha - 1}}{e^{z_{t+1}}(Ae^{z_t}K_t^\alpha)^\alpha-Ae^{z_{t+1}}(Ae^{z_t}K_t^\alpha)^\alpha}\Big\}
+  \\
+  \frac{1}{e^{z_t}K_t^\alpha(1-A)}
+  &=
+  \beta E_t\Big\{\frac{\alpha}{Ae^{z_t}K_t^\alpha(1-A)}\Big\}
+  \\
+  A &= \alpha\beta
+\end{align*}
+
+\textbf{Exercise 2}
+\begin{align*}
+  &c_t = (1-\tau) [w_t\ell_t+(r_t-\delta)k_t]+k_t+T_t-k_{t+1}
+  \\
+  &c_t^{-1} = \beta E_t\{c_{t+1}^{-1}[(r_{t+1}-\delta)(1-\tau)+1]\}
+  \\
+  &\frac{a}{1-\ell_t} = c_t^{-1}w_t(1-\tau)
+  \\
+  &r_t = \alpha e^{z_t}k_t^{\alpha-1} l_t^{1-\alpha}
+  \\
+  &w_t = (1-\alpha)e^{z_t}k_t^{\alpha}\ell_t^{-\alpha}
+  \\
+  &\tau[w_t\ell_t+(r_t-\delta)k_t] = T_t
+  \\
+  &z_t = (1-\rho_z)\bar{z}+\rho_zz_{t-1}+\epsilon_t^z; \ \ \epsilon_t^z \sim i.i.d.(0, \sigma_z^2)
+\end{align*}
+
+\textbf{Exercise 3}
+\begin{align*}
+  &c_t = (1-\tau) [w_t\ell_t+(r_t-\delta)k_t]+k_t+T_t-k_{t+1}
+  \\
+  &c_t^{-\gamma} = \beta E_t\{c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau)+1]\}
+  \\
+  &\frac{a}{1-\ell_t} = c_t^{-\gamma}w_t(1-\tau)
+  \\
+  &r_t = \alpha e^{z_t}k_t^{\alpha-1} \ell_t^{1-\alpha}
+  \\
+  &w_t = (1-\alpha)e^{z_t}k_t^{\alpha}\ell_t^{-\alpha}
+  \\
+  &\tau[w_t\ell_t+(r_t-\delta)k_t] = T_t
+  \\
+  &z_t = (1-\rho_z)\bar{z}+\rho_zz_{t-1}+\epsilon_t^z; \ \ \epsilon_t^z \sim i.i.d.(0, \sigma_z^2)
+\end{align*}
+
+\textbf{Exercise 4}
+\begin{align*}
+  &c_t = (1-\tau) [w_t\ell_t+(r_t-\delta)k_t]+k_t+T_t-k_{t+1}
+  \\
+  &c_t^{-\gamma} = \beta E_t\{c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau)+1]\}
+  \\
+  &a(1-\ell_t)^{-\xi} = c_t^{-\gamma}w_t(1-\tau)
+  \\
+  &r_t = \frac{\alpha e_{z_t} k_t^{\eta-1}}{[\alpha k_t^\eta+(1-\alpha)\ell_t^\eta]^{1/\eta}}
+  \\
+  &w_t = \frac{(1-\alpha) e_{z_t} \ell_t^{\eta-1}}{[\alpha k_t^\eta+(1-\alpha)\ell_t^\eta]^{1/\eta}}
+  \\
+  &\tau[w_t\ell_t+(r_t-\delta)k_t] = T_t
+  \\
+  &z_t = (1-\rho_z)\bar{z}+\rho_zz_{t-1}+\epsilon_t^z; \ \ \epsilon_t^z \sim i.i.d.(0, \sigma_z^2)
+\end{align*}
+
+\textbf{Exercise 5} \\
+Characterizing equations:
+\begin{align*}
+  &c_t = (1-\tau) [w_t+(r_t-\delta)k_t]+k_t+T_t-k_{t+1}
+  \\
+  &c_t^{-\gamma} = \beta E_t\{c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau)+1]\}
+  \\
+  &0 = c_t^{-\gamma}w_t(1-\tau)
+  \\
+  &r_t = \alpha k_t^{\alpha-1} (e^{z_t})^{1-\alpha}
+  \\
+  &w_t = (1-\alpha)k_t^{\alpha}(e^{z_t})^{1-\alpha}
+  \\
+  &\tau[w_t+(r_t-\delta)k_t] = T_t
+  \\
+  &z_t = (1-\rho_z)\bar{z}+\rho_zz_{t-1}+\epsilon_t^z; \ \ \epsilon_t^z \sim i.i.d.(0, \sigma_z^2)
+\end{align*}
+Steady state:
+\begin{align*}
+  &\bar{c} = (1-\tau) [\bar{w}+(\bar{r}-\delta)\bar{k}]+\bar{T}
+  \\
+  &1 = \beta E_t[(\bar{r}-\delta)(1-\tau)+1]
+  \\
+  &0 = \bar{c}^{-\gamma}\bar{w}(1-\tau)
+  \\
+  &\bar{r} = \alpha \bar{k}^{\alpha-1} (e^{\bar{z}})^{1-\alpha}
+  \\
+  &\bar{w} = (1-\alpha)\bar{k}^{\alpha}(e^{\bar{z}})^{1-\alpha}
+  \\
+  &\tau[\bar{w}+(\bar{r}-\delta)\bar{k}] = \bar{T}
+\end{align*}
+
+Solve for the steady state value of $k$:
+\begin{align*}
+  &1 = \beta[(\bar{r}-\delta)(1-\tau)+1]
+  \\
+  &1 = \beta[(\alpha \bar{k}^{\alpha-1}(e^{\bar{z}})^{1-\alpha}-\delta)(1-\tau)+1]
+  \\
+  &1 = \beta(\alpha \bar{k}^{\alpha-1}(e^{\bar{z}})^{1-\alpha}-\delta)(1-\tau)+\beta
+  \\
+  &\frac{1-\beta}{\beta(1-\tau)} = \alpha \bar{k}^{\alpha-1}(e^{\bar{z}})^{1-\alpha}-\delta
+  \\
+  &\bar{k} = \Big(\frac{1}{\alpha(e^{\bar{z}})^{1-\alpha}} \Big[\frac{1-\beta}{\beta(1-\tau)}+\delta \Big]\Big)^{\frac{1}{\alpha-1}}
+\end{align*}
+
+\textbf{Exercise 6} \\
+Characterizing equations:
+\begin{align*}
+  &c_t = (1-\tau) [w_t\ell_t+(r_t-\delta)k_t]+k_t+T_t-k_{t+1}
+  \\
+  &c_t^{-\gamma} = \beta E_t\{c_{t+1}^{-\gamma}[(r_{t+1}-\delta)(1-\tau)+1]\}
+  \\
+  &a(1-\ell_t)^{-\xi} = c_t^{-\gamma}w_t(1-\tau)
+  \\
+  &r_t = \alpha k_t^{\alpha-1} (\ell_t e^{z_t})^{1-\alpha}
+  \\
+  &w_t = (1-\alpha)k_t^{\alpha}(e^{z_t})^{1-\alpha}\ell_t^{-\alpha}
+  \\
+  &\tau[w_t\ell_t+(r_t-\delta)k_t] = T_t
+  \\
+  &z_t = (1-\rho_z)\bar{z}+\rho_zz_{t-1}+\epsilon_t^z; \ \ \epsilon_t^z \sim i.i.d.(0, \sigma_z^2)
+\end{align*}
+Steady state:
+\begin{align*}
+  &\bar{c} = (1-\tau) [\bar{w}\bar{\ell}+(\bar{r}-\delta)\bar{k}]+\bar{T}
+  \\
+  &1 = \beta E_t[(\bar{r}-\delta)(1-\tau)+1]
+  \\
+  &a(1-\bar{\ell})^{-\xi} = \bar{c}^{-\gamma}\bar{w}(1-\tau)
+  \\
+  &\bar{r} = \alpha \bar{k}^{\alpha-1} (\bar{\ell} e^{\bar{z}})^{1-\alpha}
+  \\
+  &\bar{w} = (1-\alpha)\bar{k}^{\alpha}(e^{\bar{z}})^{1-\alpha}\bar{\ell}^{-\alpha}
+  \\
+  &\tau[\bar{w}\bar{\ell}+(\bar{r}-\delta)\bar{k}] = \bar{T}
+\end{align*}
+
+\textbf{\large{Linearization}}
+
+\textbf{Exercise 3}
+\begin{align*}
+  &E_t\{FX_{t+1}+G{X_t}+HX_{t-1}+LZ_{t+1}+MZ_t\}=0
+  \\
+  &E_t\{F(PX_t+QZ_{t+1})+G(PX_{t-1}+QZ_t)+HX_{t-1}+L(NZ_t+\epsilon_t)+MZ_t\}=0
+  \\
+  &E_t\{FPX_t+FQZ_{t+1}+GPX_{t-1}+GQZ_t+HX_{t-1}+LNZ_t+L\epsilon_t+MZ_t\}=0
+  \\
+  &E_t\{FP(PX_{t-1}+QZ_t)+FQ(NZ_t+\epsilon_t)+GPX_{t-1}+GQZ_t+HX_{t-1}+LNZ_t+L\epsilon_t+MZ_t\}=0
+  \\
+  &E_t\{FP^2X_{t-1}+FPQZ_t+FQNZ_t+FQ\epsilon_t+GPX_{t-1}+GQZ_t+HX_{t-1}+LNZ_t+L\epsilon_t+MZ_t\}=0
+  \\
+  &FP^2X_{t-1}+FPQZ_t+FQNZ_t+GPX_{t-1}+GQZ_t+HX_{t-1}+LNZ_t+MZ_t=0
+  \\
+  &(FP^2+GP+H)X_{t-1}+(FPQ+FQN+FQ+LN+M)Z_t=0
+  \\
+  &[(FP+G)P+H]X_{t-1}+[(FQ+L)N+(FP+G)Q+M]Z_t=0
+\end{align*}
+
+\vspace*{\fill}
+
+Sorry that I didn't finish this problem set. I was really sick this week, and I decided to prioritize health and sleep. Thank you for three wonderful lectures, and again, I apologize for my unfinished work. \quad -Reiko
+
+\end{document}

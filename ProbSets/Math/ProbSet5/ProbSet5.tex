@@ -73,11 +73,8 @@
   Reiko Laski
 \end{flushleft}
 
-\textbf{Exercise 8.1} \\
-Optimizer: $(\frac{14}{5}, \frac{16}{5})$
-
-\textbf{Exercise 8.2} \\
-
+\textbf{Exercise 8.1-8.2} \\
+\textit{See jupyter notebook} \\
 
 \textbf{Exercise 8.3}
 \begin{align*}
@@ -338,12 +335,43 @@ Optimal point: $(0, 2)$ \\
 Optimal value: $2$ \\
 
 \textbf{Exercise 8.8}
+Give an example of a three-dimensional linear problem where the feasible region is closed and unbounded, but where the objective function still has a unique feasible maximizer.
+\begin{align*}
+  &\text{maximize} \ \ - x - y - z \\
+  &\text{subject to} \ \  x, y, z \geq 0
+\end{align*}
+Maximizer: $(0, 0, 0)$ \\
 
 \textbf{Exercise 8.9} \\
+Give an example of a three-dimensional linear problem where the feasible region is closed and unbounded and where the objective function has no maximizer.
+\begin{align*}
+  &\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \  x, y, z \geq 0
+\end{align*}
 
 \textbf{Exercise 8.10} \\
+Give an example of a three-dimensional linear problem where the feasible region is empty.
+\begin{align*}
+  &\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \ x + y + z \leq -1 \\
+  &\qquad \qquad \ \ \ x, y, z \geq 0
+\end{align*}
 
 \textbf{Exercise 8.11} \\
+Give an example of a three-dimensional linear problem where the feasible region is nonempty, closed, and unbounded, but $\vec{0}$ is not feasible.
+\begin{align*}
+  &\text{maximize} \ \ x + y + z \\
+  &\text{subject to} \ \ x + y + z \geq 1 \\
+  &\text{subject to} \ \ x + y + z \leq 3 \\
+  &\qquad \qquad \ \ \ x, y, z \geq 0
+\end{align*}
+Auxiliary problem:
+\begin{align*}
+  &\text{maximize} \ \ -w \\
+  &\text{subject to} \ \ -x - y - z - w \leq -1 \\
+  &\text{subject to} \ \ x + y + z - w \leq 3 \\
+  &\qquad \qquad \ \ \ x, y, z, w \geq 0
+\end{align*}
 
 \textbf{Exercise 8.12} \\
 \begin{align*}

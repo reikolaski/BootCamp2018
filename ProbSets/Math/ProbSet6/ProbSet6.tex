@@ -26,6 +26,7 @@
   tabsize=3
 }
 \usepackage{amsmath}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{harvard}
@@ -101,18 +102,28 @@ The FOC of this system is equivalent to that of $\vec{x}^TA^TA\vec{x} - 2\vec{b}
 Since $A^TA$ is positive definite, the solution to the normal equation is the unique minimizer of $\|A\vec{x} - \vec{b}\|_2$. \\
 
 \textbf{Exercise 9.3} \\
-Gradient descent, Newton, Quasi-Newton, Conjugate gradient \\
-For each of the multivariate optimization methods, list: \\
-(i) \\
-(ii) \\
-(iii) \\
-(iv) \\
-\textit{Proof:} \\
+\textbf{Gradient descent} \\
+(i) Basic idea: at each iteration, move in the direction $-Df^T(\vec{x}_i)$\\
+(ii) Types of optimization problems that can/cannot be solved: can be used to get closer to $\vec{x}^*$ if $\vec{x}_0$ is not close enough; objective function must be differentiable \\
+(iii) Relative strengths: \\
+(iv) Relative weaknesses: $\alpha$ must be chosen so as not to over- or undershoot the minimum; converges slowly for problems with large condition number \\
+
+\textbf{Newton and Quasi-Newton Methods} \\
+(i) Basic idea: approximates $f(\vec{x})$ by its degree-two Taylor polynomial near $\vec{x}_k$\\
+(ii) Types of optimization problems that can/cannot be solved: \\
+(iii) Relative strengths: converges quadratically; reaches the opitmizer from any starting point in just one iteration if $f$ is a quadratic function of the form $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} + \vec{b}^T\vec{x} + c$, with $Q$ symmetric and positive definite; Quasi-Newton methods have reduced computational cost of each iteration than Newton methods \\
+(iv) Relative weaknesses: difficulty converging (in general) when the initial point $\vec{x}_0$ is far from $\vec{x}^*$; requires that $Df^2(\vec{x}_i)$ be positive definite; for large $n$, $(D^2f(\vec{x}_i))^{-1}Df^T(\vec{x}_i)$ is expensive, unstable, or difficult to compute; Quasi-Newton methods have worse convergence rate than Newton methods \\
+
+\textbf{Conjugate gradient} \\
+(i) Basic idea: moves towards the minimizer of a function by moving along $Q$-conjugate directions; moving in this way allows each step to be computed relatively cheaply without needing to retain much information from previous steps \\
+(ii) Types of optimization problems that can/cannot be solved: work well when for large quadratic optimization problems where $Q$ is symmetric, positive definite, and sparse \\
+(iii) Relative strengths: guaranteed to optimize a quadratic of $n$ variables in $n$ steps, which are generally much less expensive than the steps of Newton's \\
+(iv) Relative weaknesses: may take many steps to converge \\
 
 \textbf{Exercise 9.4} \\
 Let $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x}$, where $Q \in M_n(\mathbb{R})$ satisfies $Q>0$ and $\vec{b} \in \mathbb{R}^n$. The Method of Steepest Descent (that is, gradient descent with optimal line search), converges in one step (that is, $\vec{x}_1 = Q^{-1}\vec{b}$), if and only if $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$ \big(and $\alpha_0 = \frac{Df(\vec{x}_0)Df(\vec{x}_0)^T}{Df(\vec{x}_0)QDf(\vec{x}_0)^T}$\big). \\
 \textit{Proof:} \\
-First, suppose that $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$. Then we have that $Q(Q\vec{x}_0 - \vec{b}) = \lambda(Q\vec{x}_0 - \vec{b})$ for some $\lambda \in \mathbb{R}$. We can then evaluate $\vec{x}_1$ as
+First, suppose that $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$. Then we have that $Q(Q\vec{x}_0 - \vec{b}) = \lambda(Q\vec{x}_0 - \vec{b})$ for some $\lambda \in \mathbb{R}$. We can then evaluate $\vec{x}_1$ as\\
 \begin{align*}
   \vec{x}_1 &= \vec{x}_0 - \alpha_0 Df(\vec{x}_0)^T
   \\
@@ -130,11 +141,42 @@ First, suppose that $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_
   \\
   &= Q^{-1}\vec{b}
 \end{align*}
-Now suppose that $\vec{x}_1 = Q^{-1}\vec{b}$ (the Method of Steepest Descent converges in one step). MUST PROVE REVERSE \\
+Now suppose that the Method of Steepest Descent converges in one step ($\vec{x}_1 = Q^{-1}\vec{b}$). Then
+\begin{align*}
+  &\vec{x}_1 = \vec{x}_0 - \alpha_0 Df(\vec{x}_0)^T = \vec{x}_0 - \alpha_0 (Q\vec{x}_0 - \vec{b})
+  \\
+  &\implies Q^{-1}\vec{b} = \vec{x}_0 - \alpha_0 (Q\vec{x}_0 - \vec{b})
+  \\
+  &\implies \vec{b} = Q\vec{x}_0 - \alpha_0 Q(Q\vec{x}_0 - \vec{b})
+  \\
+  &\implies Q(Q\vec{x}_0 - \vec{b}) = \frac{1}{\alpha_0}(Q\vec{x}_0 - \vec{b})
+\end{align*}.
+Thus $\vec{x}_0$ must have been chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$. \\
 
 \textbf{Exercise 9.5} \\
 Assume that $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is $C^1$. Let $\{\vec{x}_k\}_{k=0}^\infty$ be defined by the Method of Steepest Descent. Then $\vec{x}_{k+1} - \vec{x}_k$ is orthogonal to $\vec{x}_{k+2} - \vec{x}_{k+1}$ for each $k$. \\
 \textit{Proof:} \\
+In each step of the Method of Steepest Descent, we minimize
+\begin{align*}
+  \phi_k(\alpha_k) = f(\vec{x}_k - \alpha_k Df(\vec{x}_k)^T)
+\end{align*}
+By the FONC, we have that
+\begin{align*}
+  Df(\vec{x}_k - \alpha_k Df(\vec{x}_k)^T)Df(\vec{x}_k)^T = \vec{0}.
+\end{align*}
+Note that $\vec{x}_{k+1} - \vec{x}_k = -\alpha_k Df(\vec{x}_k)^T$ and $\vec{x}_{k+2} - \vec{x}_{k+1} = -\alpha_{k+1} Df(\vec{x}_{k+1})^T$. Then we have that
+\begin{align*}
+  \langle \vec{x}_{k+2} - \vec{x}_{k+1}, \vec{x}_{k+1} - \vec{x}_k \rangle
+  &=
+  (\vec{x}_{k+2} - \vec{x}_{k+1})^T (\vec{x}_{k+1} - \vec{x}_k) \\
+  &=
+  (-\alpha_{k+1} Df(\vec{x}_{k+1})^T)^T (-\alpha_k Df(\vec{x}_k)^T) \\
+  &=
+  \alpha_{k+1}\alpha_k Df(\vec{x}_{k+1})  Df(\vec{x}_k)^T \\
+  &=
+  \alpha_{k+1}\alpha_k Df(\vec{x}_k - \alpha_k Df(\vec{x}_k)^T) Df(\vec{x}_k)^T \\
+  &= \vec{0}
+\end{align*}
 
 \textbf{Exercise 9.6} \\
 \textit{See Jupyter Notebook} \\
@@ -195,15 +237,42 @@ The following is Matt's code:
 \end{align*}
 
 \textbf{Exercise 9.16} \\
-Let $Q \in M_n(\mathbb{R})$ satisfy $Q > 0$, and let $f$ be the quadratic function $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x} + c$. Given a starting point $\vec{x}_0$ and $Q$-conjugate directions $\vec{d}_0, \vec{d}_1, ..., \vec{d}_{n-1}$ in $\mathbb{R}^n$, the optimal line search solution for $x_{k+1} = \vec{x}_k + \alpha_k \vec{d}_k$ (that is, the $\alpha$ which minimizes $\phi_k(\alpha) = f(\vec{x}_k+\alpha_k \vec{d}_k)$) is given by $\alpha_k = \frac{\vec{r}_k^T \vec{d}_k}{\vec{d}_k^T Q \vec{d}_k}$, where $\vec{r}_k = \vec{b} - Q\vec{x}_k$.
 \textit{Proof:} \\
+The Quasi-Newton method gives us the approximation
+\begin{align*}
+  A_{k+1} = A_k + \frac{\vec{y}_k - A_k\vec{s}_k}{\|\vec{s}_k\|^2}\vec{s}_k^T
+\end{align*}
+Let $A = A_k, B = \vec{y}_k - A_k\vec{s}_k, C = \frac{1}{\|\vec{s}_k\|^2}, D = \vec{s}_k^T$.
+\begin{align*}
+  A_{k+1} = A + BCD
+  \\
+  \implies A_{k+1}^{-1} &= (A + BCD)^{-1}
+  \\
+  &= A^{-1} - A^{-1} B(C^{-1} + DA^{-1}B)^{-1}DA^{-1}
+  \\
+  &= A_k^{-1} - \frac{A_k^{-1} B DA_k^{-1}}{C^{-1} + DA^{-1}B}
+  \\
+  &= A_k^{-1} - \frac{A_k^{-1} (\vec{y}_k - A_k\vec{s}_k) \vec{s}_k^TA_k^{-1}}{\|\vec{s}_k\|^2 + \vec{s}_k^TA_k^{-1}(\vec{y}_k - A_k\vec{s}_k)}
+  \\
+  &= A_k^{-1} - \frac{(A_k^{-1}\vec{y}_k - \vec{s}_k) \vec{s}_k^TA_k^{-1}}{\vec{s}_k^TA_k^{-1}\vec{y}_k} \\
+  &= A_k^{-1} + \frac{(\vec{s}_k - A_k^{-1}\vec{y}_k)\vec{s}_k^T A_k^{-1}}{\vec{s}_k^T A_k^{-1}\vec{y}_k}
+\end{align*}
 
 \textbf{Exercise 9.18} \\
+Let $Q \in M_n(\mathbb{R})$ satisfy $Q > 0$, and let $f$ be the quadratic function $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x} + c$. Given a starting point $\vec{x}_0$ and $Q$-conjugate directions $\vec{d}_0, \vec{d}_1, ..., \vec{d}_{n-1}$ in $\mathbb{R}^n$, the optimal line search solution for $x_{k+1} = \vec{x}_k + \alpha_k \vec{d}_k$ (that is, the $\alpha$ which minimizes $\phi_k(\alpha) = f(\vec{x}_k+\alpha_k \vec{d}_k)$) is given by $\alpha_k = \frac{\vec{r}_k^T \vec{d}_k}{\vec{d}_k^T Q \vec{d}_k}$, where $\vec{r}_k = \vec{b} - Q\vec{x}_k$. \\
 \textit{Proof:} \\
-
-\textbf{Exercise 9.20} \\
-In the Conjugate Gradient Algorithm $\vec{r}_i^T\vec{r}_k=0$ for all $i < k$. \\
-\textit{Proof:} \\
-
+The optimal line search solution for $x_{k+1} = \vec{x}_k + \alpha_k \vec{d}_k$ is the $\alpha$ which minimizes $\phi_k(\alpha) = f(\vec{x}_k+\alpha_k \vec{d}_k)$. By the FONC, we have that
+\begin{align*}
+  &Df(\vec{x}_k+\alpha_k \vec{d}_k)\vec{d}_k = \vec{0}
+  \\
+  &\implies ((\vec{x}_k+\alpha_k \vec{d}_k)^TQ - \vec{b}^T)\vec{d}_k = \vec{0}
+  \\
+  &\implies \vec{x}_k^TQ\vec{d}_k + \alpha_k\vec{d}_k^T Q \vec{d}_k - \vec{b}^T\vec{d}_k = \vec{0}
+  \\
+  &\implies \alpha_k = \frac{(\vec{b}^T - \vec{x}_k^TQ)\vec{d}_k}{\vec{d}_k^T Q \vec{d}_k}
+  \\
+  &\implies \alpha_k = \frac{\vec{r}_k^T \vec{d}_k}{\vec{d}_k^T Q \vec{d}_k}
+\end{align*}
+where $\vec{r}_k = \vec{b} - Q\vec{x}_k$. \\
 
 \end{document}

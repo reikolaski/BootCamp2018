@@ -1,0 +1,209 @@
+\documentclass[letterpaper,12pt]{article}
+\usepackage{array}
+\usepackage{threeparttable}
+\usepackage{geometry}
+\geometry{letterpaper,tmargin=1in,bmargin=1in,lmargin=1.25in,rmargin=1.25in}
+\usepackage{fancyhdr,lastpage}
+\pagestyle{fancy}
+\lhead{}
+\chead{}
+\rhead{}
+\lfoot{}
+\cfoot{}
+\rfoot{\footnotesize\textsl{Page \thepage\ of \pageref{LastPage}}}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\usepackage[format=hang,font=normalsize,labelfont=bf]{caption}
+\usepackage{listings}
+\lstset{frame=single,
+  language=Python,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{harvard}
+\usepackage{setspace}
+\usepackage{float,color}
+\usepackage[pdftex]{graphicx}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\let\vec\mathbf
+\hypersetup{colorlinks,linkcolor=red,urlcolor=blue}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{derivation}{Derivation} % Number derivations on their own
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Proposition} % Number propositions on their own
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\bibliographystyle{aer}
+\newcommand\ve{\varepsilon}
+\newcommand\boldline{\arrayrulewidth{1pt}\hline}
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\begin{flushleft}
+  \textbf{\large{Problem Set \#6}} \\
+  Reiko Laski
+\end{flushleft}
+
+\textbf{Exercise 9.1} \\
+An unconstrained linear objective function is either constant or has no minimum. \\
+\textit{Proof:} \\
+Consider the unconstrained linear objective function $f(\vec{x})=\vec{b}^T\vec{x} + c$. By the FONC, we know that if a minimum exists, it will occur when $Df(\vec{x}) = \vec{0}$. If $f(\vec{x})$ is a constant function, then $Df(\vec{x}) = \vec{0}$ and we have a minimum. If $f(\vec{x})$ is not a constant function, then $Df(\vec{x}) = \vec{b}^T$ and there is no minimum. \\
+
+\textbf{Exercise 9.2} \\
+If $\vec{b} \in \mathbb{R}^m$ and $A \in M_{m \times n}(\mathbb{R})$, then the problem of finding an $\vec{x}^* \in \mathbb{R}^n$ to minimize $\|A\vec{x} - \vec{b}\|_2$ is equivalent to minimizing
+\begin{align*}
+  \vec{x}^TA^TA\vec{x} - 2\vec{b}^TA\vec{x}.
+\end{align*}
+\textit{Proof:}
+\begin{align*}
+  \|A\vec{x} - \vec{b}\| &= (A\vec{x} - \vec{b})^T(A\vec{x} - \vec{b})
+  \\
+  &= (\vec{x}^TA^T - \vec{b}^T)(A\vec{x} - \vec{b})
+  \\
+  &= \vec{x}^TA^TA\vec{x} - \vec{b}^TA\vec{x} -\vec{x}^TA^T\vec{b} + \vec{b}^T\vec{b}
+  \\
+  &= \vec{x}^TA^TA\vec{x} - 2\vec{b}^TA\vec{x} + \vec{b}^T\vec{b}
+\end{align*}
+The FOC of this system is equivalent to that of $\vec{x}^TA^TA\vec{x} - 2\vec{b}^TA\vec{x}$,
+\begin{align*}
+  2A^TA\vec{x} - 2A^T\vec{b} &= \vec{0}
+  \\
+  \implies A^TA\vec{x} &= A^T\vec{b}
+\end{align*}
+Since $A^TA$ is positive definite, the solution to the normal equation is the unique minimizer of $\|A\vec{x} - \vec{b}\|_2$. \\
+
+\textbf{Exercise 9.3} \\
+Gradient descent, Newton, Quasi-Newton, Conjugate gradient \\
+For each of the multivariate optimization methods, list: \\
+(i) \\
+(ii) \\
+(iii) \\
+(iv) \\
+\textit{Proof:} \\
+
+\textbf{Exercise 9.4} \\
+Let $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x}$, where $Q \in M_n(\mathbb{R})$ satisfies $Q>0$ and $\vec{b} \in \mathbb{R}^n$. The Method of Steepest Descent (that is, gradient descent with optimal line search), converges in one step (that is, $\vec{x}_1 = Q^{-1}\vec{b}$), if and only if $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$ \big(and $\alpha_0 = \frac{Df(\vec{x}_0)Df(\vec{x}_0)^T}{Df(\vec{x}_0)QDf(\vec{x}_0)^T}$\big). \\
+\textit{Proof:} \\
+First, suppose that $\vec{x}_0$ is chosen such that $Df(\vec{x}_0)^T = Q\vec{x}_0 - \vec{b}$ is an eigenvector of $Q$. Then we have that $Q(Q\vec{x}_0 - \vec{b}) = \lambda(Q\vec{x}_0 - \vec{b})$ for some $\lambda \in \mathbb{R}$. We can then evaluate $\vec{x}_1$ as
+\begin{align*}
+  \vec{x}_1 &= \vec{x}_0 - \alpha_0 Df(\vec{x}_0)^T
+  \\
+  &= \vec{x}_0 - \frac{Df(\vec{x}_0)Df(\vec{x}_0)^T}{Df(\vec{x}_0)QDf(\vec{x}_0)^T} Df(\vec{x}_0)^T
+  \\
+  &= \vec{x}_0 - \frac{(Q\vec{x}_0 - \vec{b})^T(Q\vec{x}_0 - \vec{b})}{(Q\vec{x}_0 - \vec{b})^TQ(Q\vec{x}_0 - \vec{b})} (Q\vec{x}_0 - \vec{b})
+  \\
+  &= \vec{x}_0 - \frac{(Q\vec{x}_0 - \vec{b})^T(Q\vec{x}_0 - \vec{b})}{(Q\vec{x}_0 - \vec{b})^T\lambda(Q\vec{x}_0 - \vec{b})} (Q\vec{x}_0 - \vec{b})
+  \\
+  &= \vec{x}_0 - \frac{1}{\lambda}(Q\vec{x}_0 - \vec{b})
+  \\
+  &= \vec{x}_0 - Q^{-1}(Q\vec{x}_0 - \vec{b})
+  \\
+  &= \vec{x}_0 - Q^{-1}Q\vec{x}_0 - Q^{-1}\vec{b}
+  \\
+  &= Q^{-1}\vec{b}
+\end{align*}
+Now suppose that $\vec{x}_1 = Q^{-1}\vec{b}$ (the Method of Steepest Descent converges in one step). MUST PROVE REVERSE \\
+
+\textbf{Exercise 9.5} \\
+Assume that $f: \mathbb{R}^n \rightarrow \mathbb{R}$ is $C^1$. Let $\{\vec{x}_k\}_{k=0}^\infty$ be defined by the Method of Steepest Descent. Then $\vec{x}_{k+1} - \vec{x}_k$ is orthogonal to $\vec{x}_{k+2} - \vec{x}_{k+1}$ for each $k$. \\
+\textit{Proof:} \\
+
+\textbf{Exercise 9.6} \\
+\textit{See Jupyter Notebook} \\
+
+\textbf{Exercise 9.7} \\
+\textit{See Jupyter Notebook} \\
+
+\textbf{Exercise 9.8} \\
+\textit{See Jupyter Notebook} \\
+
+\textbf{Exercise 9.9} \\
+\textit{See Jupyter Notebook} \\
+
+\textbf{Exercise 9.10} \\
+Consider the quadratic function $f(\vec{x})=\frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x}$, where $Q \in M_n(\mathbb{R})$ is symmetric and positive definite and $\vec{b} \in \mathbb{R}^n$. For any initial guess $\vec{x}_0 \in \mathbb{R}^n$, one iteration of Newton's method lands at the unique minimizer of $f$. \\
+\textit{Proof:} \\
+Since $Q$ is positive definite, we know that there is a unique minimizer of $f(\vec{x})=\frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x}$. By the FONC, $Q\vec{x}^* - \vec{b} = \vec{0} \implies \vec{x}^* = Q^{-1}\vec{b}$. Using Newton's method with an arbitrary $\vec{x}_0$, we have
+\begin{align*}
+  \vec{x}_1 &= \vec{x}_0 - D^2f(\vec{x}_0)^{-1}Df(\vec{x}_0)^T
+  \\
+  &= \vec{x}_0 - Q^{-1}(Q\vec{x}_0 - \vec{b})
+  \\
+  &= \vec{x}_0 - Q^{-1}Q\vec{x}_0 + Q^{-1}\vec{b}
+  \\
+  &= Q^{-1}\vec{b}
+  \\
+  &= \vec{x}^*
+\end{align*}
+
+\textbf{Exercise 9.12} \\
+If $A \in M_n(\mathbb{F})$ has eigenvalues $\lambda_1, ..., \lambda_n$ and $B = A + \mu I$, then the eigenvectors of $A$ and $B$ are the same, and the eigenvalues of $B$ are $\mu + \lambda_1, \mu + \lambda_2, ..., \mu + \lambda_n$. \\
+\textit{Proof:} \\
+Let $\vec{x}_i$ be the eigenvector of $A$ corresponding to the eigenvalue $\lambda_i$. Then we have that
+\begin{align*}
+  B\vec{x}_i &= (A+\mu I)\vec{x}_i \\
+  &= A\vec{x}_i + \mu I\vec{x}_i \\
+  &= \lambda_i\vec{x}_i + \mu\vec{x}_i \\
+  &= (\lambda_i + \mu)\vec{x}_i
+\end{align*}
+
+\textbf{Exercise 9.15} \\
+Let $A$ be a nonsingular $n \times n$ matrix, $B$ an $n \times \ell$ matrix, $C$ a nonsingular $\ell \times \ell$ matrix, and $D$ an $\ell \times n$ matrix. We have
+\begin{align*}
+  (A + BCD)^{-1} = A^{-1} - A^{-1} B(C^{-1} + DA^{-1}B)^{-1}DA^{-1}
+\end{align*}
+\textit{Proof:} \\
+The following is Matt's code:
+\begin{align*}
+  &(A+BCD)(A^{-1} - A^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1}) \\
+  &= AA^{-1} - AA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+  &= I - B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+  &= I - B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} + BCDA^{-1} - BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1}DA^{-1} \\
+  &= I + BCDA^{-1} - (B(C^{-1} + DA^{-1}B)^{-1} + BCDA^{-1}B(C^{-1} + DA^{-1}B)^{-1})DA^{-1} \\
+  &= I + BCDA^{-1} - ((B+BCDA^{-1}B)(C^{-1} + DA^{-1}B)^-{1}))DA^{-1} \\
+  &= I + BCDA^{-1} - (BC(C^{-1}+DA^{-1}B)(C^{-1} + DA^{-1}B)^-{1}))DA^{-1} \\
+  &= I + BCDA^{-1} - BCDA^{-1} \\
+  &= I
+\end{align*}
+
+\textbf{Exercise 9.16} \\
+Let $Q \in M_n(\mathbb{R})$ satisfy $Q > 0$, and let $f$ be the quadratic function $f(\vec{x}) = \frac{1}{2}\vec{x}^TQ\vec{x} - \vec{b}^T\vec{x} + c$. Given a starting point $\vec{x}_0$ and $Q$-conjugate directions $\vec{d}_0, \vec{d}_1, ..., \vec{d}_{n-1}$ in $\mathbb{R}^n$, the optimal line search solution for $x_{k+1} = \vec{x}_k + \alpha_k \vec{d}_k$ (that is, the $\alpha$ which minimizes $\phi_k(\alpha) = f(\vec{x}_k+\alpha_k \vec{d}_k)$) is given by $\alpha_k = \frac{\vec{r}_k^T \vec{d}_k}{\vec{d}_k^T Q \vec{d}_k}$, where $\vec{r}_k = \vec{b} - Q\vec{x}_k$.
+\textit{Proof:} \\
+
+\textbf{Exercise 9.18} \\
+\textit{Proof:} \\
+
+\textbf{Exercise 9.20} \\
+In the Conjugate Gradient Algorithm $\vec{r}_i^T\vec{r}_k=0$ for all $i < k$. \\
+\textit{Proof:} \\
+
+
+\end{document}
